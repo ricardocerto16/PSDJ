@@ -52,7 +52,7 @@ public class CalculadoraApp {
         // NAO MEXER NAO MEXER NAO MEXER NAO MEXER NAO MEXER NAO MEXER NAO MEXER NAO MEXER NAO MEXER NAO MEXER NAO MEXER NAO MEXER NAO MEXER NAO MEXER NAO MEXER NAO MEXER
         // TA DIREITO TA DIREITO TA DIREITO TA DIREITO TA DIREITO TA DIREITO TA DIREITO TA DIREITO TA DIREITO TA DIREITO TA DIREITO TA DIREITO TA DIREITO TA DIREITO TA DIREITO
         String [] start= {
-                "                                       * *                                                  "+data+"   * *",
+                "                                       * *                                                  "+data+" * *",
                 "                                       * *     ______    _                                                                       * *",
                 "                                       * *    /_  __/   (_)   ____ ___   ___                          "+hora+"H : "+minuto+"m                  * *",
                 "                                       * *     / /     / /   / __ `__ \\ / _ \\                                                    * *",
@@ -224,7 +224,7 @@ public class CalculadoraApp {
 
                 case 7:
                     clearScreen();
-                    //DURAÇÃO DE UMA VIAGEM
+                    //DURAÇÃO DE UMA VIAGEM sld 2-> 22++
                     break;
 
             }

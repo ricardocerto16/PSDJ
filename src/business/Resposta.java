@@ -225,7 +225,7 @@ public class Resposta {
     //Normalizar data no menu principal
     public String normalizarData(String str) {
         if (str.length() < 36) {
-            int dif = 30 - str.length();
+            int dif = 36 - str.length();
 
             if (dif % 2 == 0) {
 
