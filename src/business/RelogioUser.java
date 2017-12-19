@@ -8,7 +8,7 @@ import java.time.ZonedDateTime;
 
 
 
-public class RelogioUser {
+public class RelogioUser implements Relogio {
 
     public String getFuso() {
         String fuso = (ZoneId.systemDefault()).toString();
