@@ -5,7 +5,7 @@ public interface Relogio {
 
     public String getFuso();
 
-    public String getOffSet ();
+    public String getOffSet();
 
     public String getDiaSemana();
 

@@ -504,7 +504,8 @@ public class CalculadoraApp {
         System.out.println("> Valor Introduzido!\n");
         d1mes = startMenu.readInt(           "                                       * *       Introduza o mês da data:                                                        * *");
         System.out.println("> Valor Introduzido!\n");
-        d1ano = startMenu.readInt(           "                                       * *       Introduza o ano da data:                                                        * *");
+        d1ano = startMenu.readInt(
+                "                                       * *       Introduza o ano da data:                                                        * *");
         System.out.println(                       "                                       * *                            A Data Foi Introduzida Com Sucesso                         * *");
         System.out.println(                       "                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
         System.out.println(                       "                                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *              \n");
@@ -851,7 +852,7 @@ public class CalculadoraApp {
         //dado um pais, dizer a data e hora nesse país
 
         String resposta,pais, pais_resposta;
-        Set<String>  zones = getAvailableZoneIds();
+        Set<String>  zones = ZoneId.getAvailableZoneIds();
 
 
 
