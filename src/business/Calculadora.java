@@ -8,40 +8,54 @@ import java.time.temporal.TemporalAdjusters;
 
 import static java.time.DayOfWeek.SATURDAY;
 import static java.time.DayOfWeek.SUNDAY;
+import java.time.temporal.ChronoUnit;
 import static java.time.temporal.ChronoUnit.*;
+import java.time.temporal.Temporal;
 
 public class Calculadora implements ICalculadora {
 
-    public int difDatas(LocalDate from, LocalDate to, String tipo) {
-        Period periodo = getPeriod(from, to);
+    //devolve os anos,meses ou dias entre duas datas
+    public int difDatas(Temporal from, Temporal to, String tipo) {
 
         switch (tipo.toLowerCase()) {
             case "anos":
-                return periodo.getYears();
+                return (int) ChronoUnit.YEARS.between(from,to);
             case "meses":
-                return periodo.getMonths();
+                return (int) ChronoUnit.MONTHS.between(from,to);
             case "dias":
-                return periodo.getDays();
+                return (int) ChronoUnit.DAYS.between(from,to);
         }
         return 0;
     }
 
-    private Period getPeriod(LocalDate d1, LocalDate d2) {
-        return Period.between(d1, d2);
-    }
+    //REVIEW
+    //Devolve o número de ocorrências de um dia especifico(Sabado,Domingo...)
+    public int numDiaEspecifico(Temporal from, Temporal to, DayOfWeek dia){
+        int totalDias = difDatas(from,to,"dias");
+        int dias = 0;
+        LocalDate d1 = LocalDate.from(from);
+        
+        for(int i=0;i<totalDias;i++){
+            d1 = d1.plusDays(i);
+            if(d1.getDayOfWeek().equals(dias)){
+                dias++;
+            }
+        }
+        return dias;
+    }   
+    
 
     public int tempoFalta(String tipo, LocalDateTime data) {
         LocalDateTime now = LocalDateTime.now();
-        Period periodo = getPeriod(now.toLocalDate(), data.toLocalDate());
         long time[] = getTime(now, data);
 
         switch (tipo.toLowerCase()) {
             case "anos":
-                return periodo.getYears();
+                return (int) ChronoUnit.YEARS.between(now, data);
             case "meses":
-                return periodo.getMonths();
+                return (int) ChronoUnit.MONTHS.between(now, data);
             case "dias":
-                return periodo.getDays();
+                return (int) ChronoUnit.DAYS.between(now, data);
             case "horas":
                 return (int) time[0];
             case "minutos":
@@ -85,20 +99,97 @@ public class Calculadora implements ICalculadora {
     }
 
 
-    public int uteisEntreDatas(LocalDate from, LocalDate to) {
+    //Calcula o número de dias úteis entre duas datas
+    public int uteisEntreDatas(Temporal from, Temporal to) {
+        int naoUteis = naoUteisEntreDatas(from,to);
+        
+        return (int) ChronoUnit.DAYS.between(from,to) + 1 - naoUteis;
+    }
+        /*
         int total_dias = difDatas(from, to, "dias");
         int dias_uteis = 0;
 
         for (int i = 0; i < total_dias; i++) {
             LocalDate tmp = from.plusDays(i);
             if (!(tmp.getDayOfWeek().equals(SATURDAY) || tmp.getDayOfWeek().equals(SUNDAY))){
-               // System.out.println(tmp+", "+tmp.getDayOfWeek());
                 dias_uteis++;
             }
         }
         return dias_uteis;
+        */
+    
+    //REVIEW
+    //Calcula o número de fim de semanas entre duas datas
+    public int numFimDeSemana(Temporal from, Temporal to){
+        int totalDias = difDatas(from,to,"dias");
+        LocalDate d1 = LocalDate.from(from);
+        int numFDS = 0;
+        
+        for(int i=0;i<totalDias;i++){
+            d1 = d1.plusDays(i);
+            DayOfWeek dia = d1.getDayOfWeek();
+            if(dia.equals(SATURDAY) || dia.equals(SUNDAY)){
+                i++;
+                numFDS++;
+            }
+        }
+        
+        return numFDS;
     }
 
+    //REVIEW
+    public int naoUteisEntreDatas(Temporal from,Temporal to){
+        int sabado = numDiaEspecifico(from,to,DayOfWeek.SATURDAY);
+        int domingo = numDiaEspecifico(from,to,DayOfWeek.SUNDAY);
+        int feriados = numFeriados(from,to);
+        
+        return sabado+domingo+feriados;
+    }
+    
+    //REVIEW
+    public int numFeriados(Temporal from, Temporal to){
+        int totalDias = difDatas(from,to,"dias");
+        LocalDate d1 = LocalDate.from(from);
+        int numF = 0;
+        
+        for(int i=0;i<totalDias;i++){
+            d1.plusDays(i);
+            if(isFeriado(d1)) numF++;
+        }
+        
+        return numF;
+    }
+    
+    //REVIEW
+    //diz se uma data é um feriado (Portugal)
+    public boolean isFeriado(LocalDate t){
+        
+        int ano = t.getYear();
+        
+        LocalDate f1 = LocalDate.of(ano, Month.JANUARY, 1);
+        LocalDate f2 = LocalDate.of(ano, Month.MARCH,30);
+        LocalDate f3 = LocalDate.of(ano, Month.APRIL,1);
+        LocalDate f4 = LocalDate.of(ano, Month.APRIL,25);
+        LocalDate f5 = LocalDate.of(ano, Month.MAY,1);
+        LocalDate f6 = LocalDate.of(ano, Month.MAY,31);
+        LocalDate f7 = LocalDate.of(ano, Month.JUNE,10);
+        LocalDate f8 = LocalDate.of(ano, Month.AUGUST,15);
+        LocalDate f9 = LocalDate.of(ano, Month.OCTOBER,5);
+        LocalDate f10 = LocalDate.of(ano, Month.NOVEMBER,1);
+        LocalDate f11 = LocalDate.of(ano, Month.DECEMBER,1);
+        LocalDate f12 = LocalDate.of(ano, Month.DECEMBER,8);
+        LocalDate f13 = LocalDate.of(ano, Month.DECEMBER, 25);
+        
+        return t.equals(f1) || t.equals(f2) ||
+                t.equals(f3) || t.equals(f4) ||
+                t.equals(f5) || t.equals(f6) ||
+                t.equals(f7) || t.equals(f8) ||
+                t.equals(f9) || t.equals(f10)||
+                t.equals(f11)|| t.equals(f12)||
+                t.equals(f13);
+    }
+    
+    
     public LocalDate uteisAposData(LocalDate data, int uteis) {
         int i = 0;
         while (i < uteis) {
@@ -119,7 +210,6 @@ public class Calculadora implements ICalculadora {
         }
         return data;
     }
-
 
 
     public LocalDate adicionaData(LocalDate data, int adddia, int addsemana, int addmes, int addano) {

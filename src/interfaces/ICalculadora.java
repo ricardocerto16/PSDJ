@@ -1,12 +1,14 @@
 package interfaces;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.Temporal;
 
 
 public interface ICalculadora {
 
-    int difDatas(LocalDate from, LocalDate to, String tipo);
+    int difDatas(Temporal from, Temporal to, String tipo);
 
     int tempoFalta(String tipo, LocalDateTime data);
 
@@ -16,8 +18,23 @@ public interface ICalculadora {
 
     int semanaCalendario(LocalDate data);
 
-    int uteisEntreDatas(LocalDate from, LocalDate to);
-
+    int uteisEntreDatas(Temporal from, Temporal to);
+    
+    //REVIEW
+    int numFimDeSemana(Temporal from, Temporal to);
+    
+    //REVIEW
+    int numDiaEspecifico(Temporal from, Temporal to, DayOfWeek dia);
+    
+    //REVIEW
+    int naoUteisEntreDatas(Temporal from,Temporal to);
+    
+    //REVIEW
+    int numFeriados(Temporal from, Temporal to);
+    
+    //REVIEW
+    boolean isFeriado(LocalDate t);
+    
     LocalDate uteisAposData(LocalDate data, int uteis);
 
     LocalDate uteisAntesData(LocalDate data, int uteis);
