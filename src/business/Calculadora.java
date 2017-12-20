@@ -36,8 +36,8 @@ public class Calculadora implements ICalculadora {
         LocalDate d1 = LocalDate.from(from);
         
         for(int i=0;i<totalDias;i++){
-            d1 = d1.plusDays(i);
-            if(d1.getDayOfWeek().equals(dias)){
+            LocalDate tmp = d1.plusDays(i); 
+            if(tmp.getDayOfWeek().equals(dia)){
                 dias++;
             }
         }
@@ -126,8 +126,8 @@ public class Calculadora implements ICalculadora {
         int numFDS = 0;
         
         for(int i=0;i<totalDias;i++){
-            d1 = d1.plusDays(i);
-            DayOfWeek dia = d1.getDayOfWeek();
+            LocalDate tmp = d1.plusDays(i);
+            DayOfWeek dia = tmp.getDayOfWeek();
             if(dia.equals(SATURDAY) || dia.equals(SUNDAY)){
                 i++;
                 numFDS++;
@@ -153,11 +153,11 @@ public class Calculadora implements ICalculadora {
         int numF = 0;
         
         for(int i=0;i<totalDias;i++){
-            d1.plusDays(i);
-            if(isFeriado(d1)) numF++;
+            LocalDate tmp =d1.plusDays(i);
+            if(isFeriado(tmp)) numF++;
         }
         
-        System.out.println(numF);
+        System.out.println("NUM FERIADOS" +numF);
         return numF;
     }
     
