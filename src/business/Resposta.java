@@ -1,9 +1,11 @@
 package business;
 
 import interfaces.ICalculadora;
+import interfaces.IFusos;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 public class Resposta {
 
@@ -206,8 +208,6 @@ public class Resposta {
         sb.append("O último dia do ano, para a data inserida, corresponde a ").append(res).append(", ").append(dia_semana);
         return sb.toString();
     }
-
-
 
 
 

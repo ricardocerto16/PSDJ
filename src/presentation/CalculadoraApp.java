@@ -3,10 +3,12 @@ package presentation;
 
 import business.Resposta;
 import business.RelogioUser;
+import business.Fusos;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -15,6 +17,7 @@ public class CalculadoraApp {
 
     private static Resposta principal;
     private static RelogioUser rel;
+    private static Fusos fusos;
     private static Menu startMenu, duracaoMenu, calculadoraMenu, uteisMenu, adicionaRemoveMenu, diaXMenu, diamesMenu, diaanoMenu, fusoshMenu;
 
 
@@ -23,6 +26,7 @@ public class CalculadoraApp {
     public static void main (String [] args) {
         principal = new Resposta();
         rel = new RelogioUser();
+        fusos = new Fusos();
         carregarMenus();
         printMenuPrincipal();
     }
@@ -312,7 +316,7 @@ public class CalculadoraApp {
                 case 3:
                     clearScreen();
                     calculadoraDiasUteisAntes();
-                    break;
+                    break;                
             }
         } while (op != 0);
     }
@@ -345,17 +349,17 @@ public class CalculadoraApp {
             switch (op) {
                 case 1:
                     clearScreen();
-
+                    calculadoraDataXDia();
                     break;
 
                 case 2:
                     clearScreen();
-
+                    calculadoraSemanaXDia();
                     break;
 
                 case 3:
                     clearScreen();
-                    //calculadoraXDiaData();
+                    calculadoraXDiaData();
                     break;
             }
         } while (op != 0);
@@ -423,12 +427,7 @@ public class CalculadoraApp {
 
                 case 2:
                     clearScreen();
-                    //calculadoraUltimoDiaAno();
-                    break;
-
-                case 3:
-                    clearScreen();
-                    //calculadoraComumBissexto();
+                    fusoTempoAtual();
                     break;
             }
         } while (op != 0);
@@ -811,14 +810,18 @@ public class CalculadoraApp {
 
 
         resposta = principal.dataXDia(dia,d1ano);
-        System.out.println(resposta);
+         System.out.println(                       "                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
+         System.out.println(                       "                                       * *                                                                                             * *");
+         System.out.println(                       "                                       * *  " + resposta + "                                                                           * *");
+         System.out.println(                       "                                       * *                                                                                             * *");
+         System.out.println(                       "                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
 
+         System.out.println("Pressione Enter Para Continuar");
+          while (!startMenu.readString("").equals("")) {
+              System.out.println("Pressione Enter Para Continuar");
+         }
+        //clearScreen();
 
-        System.out.println("Pressione Enter Para Continuar");
-        while (!startMenu.readString("").equals("")) {
-            System.out.println("Pressione Enter Para Continuar");
-
-        }
     }
 
 
@@ -844,10 +847,10 @@ public class CalculadoraApp {
         resposta = principal.xDiaData(d1);
         System.out.println(resposta);
 
-        System.out.println("Pressione Enter Para Continuar");
-        while (!startMenu.readString("").equals("")) {
-            System.out.println("Pressione Enter Para Continuar");
-        }
+        //System.out.println("Pressione Enter Para Continuar");
+        //while (!startMenu.readString("").equals("")) {
+        //    System.out.println("Pressione Enter Para Continuar");
+        //}
     }
 
 
@@ -1097,7 +1100,32 @@ public class CalculadoraApp {
     }
 
 
-    public static void clearScreen(){
+    private static void fusoTempoAtual(){
+
+        String local;
+        clearScreen();
+        ZonedDateTime zdt;
+        System.out.println(                       "                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
+        System.out.println(                       "                                       * *                                                                                       * *");
+        local = startMenu.readString(           "                                    * *       Introduza a Zona:                                                               * *");
+        System.out.println("> Valor Introduzido!\n");
+        System.out.println(                       "                                       * *                         A Zona Foi Introduzida Com Sucesso                             * *");
+        System.out.println(                       "                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
+        System.out.println(                       "                                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *              \n");
+
+        System.out.println(local);
+
+        zdt = fusos.tempoAtual(local);
+        StringBuilder sb;
+        sb = new StringBuilder();
+        //sb.append("O tempo atual ").append(local).append(" é o seguinte  ").append(zdt);
+        System.out.println(zdt);
+
+
+    }
+
+
+    private static void clearScreen(){
         for (int i=0;i<=20;i++){
             System.out.println("\n");
         }
