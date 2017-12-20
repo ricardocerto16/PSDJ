@@ -1100,29 +1100,83 @@ public class CalculadoraApp {
     }
 
 
-    private static void fusoTempoAtual(){
-
+    private static void fusoTempoAtual() {
+        // falta verificar se a  opção é válida
         String local;
         clearScreen();
         ZonedDateTime zdt;
-        System.out.println(                       "                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
-        System.out.println(                       "                                       * *                                                                                       * *");
-        local = startMenu.readString(           "                                    * *       Introduza a Zona:                                                               * *");
+        System.out.println("                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
+        System.out.println("                                       * *                                                                                       * *");
+        local = startMenu.readString("                                    * *       Introduza a Zona:                                                               * *");
         System.out.println("> Valor Introduzido!\n");
-        System.out.println(                       "                                       * *                         A Zona Foi Introduzida Com Sucesso                             * *");
-        System.out.println(                       "                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
-        System.out.println(                       "                                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *              \n");
+        System.out.println("                                       * *                         A Zona Foi Introduzida Com Sucesso                             * *");
+        System.out.println("                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
+        System.out.println("                                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *              \n");
 
         System.out.println(local);
 
         zdt = fusos.tempoAtual(local);
         StringBuilder sb;
         sb = new StringBuilder();
-        //sb.append("O tempo atual ").append(local).append(" é o seguinte  ").append(zdt);
+        sb.append("O tempo atual ").append(local).append(" é o seguinte  ").append(zdt);
         System.out.println(zdt);
 
-
+        System.out.println("Pressione Enter Para Continuar");
+        while (!startMenu.readString("").equals("")) {
+            System.out.println("Pressione Enter Para Continuar");
+        }
     }
+
+
+    private static void fusoTempo2Viagens() {
+
+        int d1dia, d1mes, d1ano, d2dia, d2mes, d2ano;
+        int hora1 , segundos1 , minuto1 , hora2 , segundos2 , minuto2;
+
+        d1dia = startMenu.readInt("                                       * *       Introduza o dia da data 1:                                         * *");
+        System.out.println("> Valor Introduzido!\n");
+        d1mes = startMenu.readInt("                                       * *       Introduza o mês da data 1:                                   * *");
+        System.out.println("> Valor Introduzido!\n");
+        d1ano = startMenu.readInt("                                       * *       Introduza o ano da data 1 :                                    * * ");
+
+        hora1 = startMenu.readInt("                                       * *       Introduza as horas da hora 1:                                         * *");
+        System.out.println("> Valor Introduzido!\n");
+        minuto1 = startMenu.readInt("                                       * *       Introduza os minutos da data 1:                                         * *");
+        System.out.println("> Valor Introduzido!\n");
+        segundos1 = startMenu.readInt("                                       * *       Introduza os segundos da data 1:                                         * *");
+        System.out.println("> Valor Introduzido!\n");
+
+        System.out.println(">>>> DATA E HORA 1 INTRODUZIDAS COM SUCESSO!\n");
+
+
+
+        d2dia = startMenu.readInt("                                       * *       Introduza o dia da data 2:                                         * *");
+        System.out.println("> Valor Introduzido!\n");
+        d2mes = startMenu.readInt("                                       * *       Introduza o dia da data 2:                                         * *");
+        System.out.println("> Valor Introduzido!\n");
+        d2ano = startMenu.readInt("                                       * *       Introduza o dia da data 2:                                         * *");
+        System.out.println("> Valor Introduzido!\n");
+
+        hora2 = startMenu.readInt("                                       * *       Introduza as horas da hora 2:                                         * *");
+        System.out.println("> Valor Introduzido!\n");
+        minuto2 = startMenu.readInt("                                       * *       Introduza as horas da hora 1:                                         * *");
+        System.out.println("> Valor Introduzido!\n");
+        segundos2 = startMenu.readInt("                                       * *       Introduza as horas da hora 1:                                         * *");
+        System.out.println("> Valor Introduzido!\n");
+
+        System.out.println(">>>> DATA E HORA 2 INTRODUZIDAS COM SUCESSO!\n\n\n");
+
+        LocalDateTime date1 = LocalDateTime.of(d1ano,d1mes,d1dia,hora1,minuto1,segundos1);
+        LocalDateTime d1 = LocalDateTime.of(d2ano,d2mes,d2dia,hora2,minuto2,segundos2);
+
+        
+        // CRIAR LOCAL DATE TIMES E INVOCAR A FUNÇÃO DOS FUSOS
+        // DAR PRINT DO RESULTADO
+    }
+
+
+
+
 
 
     private static void clearScreen(){
@@ -1130,7 +1184,6 @@ public class CalculadoraApp {
             System.out.println("\n");
         }
     }
-
 
 
 
