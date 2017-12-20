@@ -93,6 +93,14 @@ public class CalculadoraApp {
                 "                                       * *                            4 - CALCULADORA DIAS ÚTEIS                                 * *",
                 "                                       * *                                                                                       * *",
                 "                                       * *                            5 - CALCULADORA DO Xº DIA                                  * *",
+                "                                       * *                                                                                       * *", 
+                "                                       * *                            6 - CALCULADORA DE UM DIA ESPECIFICO                       * *", 
+                "                                       * *                                                                                       * *",
+                "                                       * *                            7 - CALCULADORA DE FIM DE SEMANA                           * *",
+                "                                       * *                                                                                       * *",
+                "                                       * *                            8 - CALCULADORA DIAS NÃO ÚTEIS                             * *",
+                "                                       * *                                                                                       * *",
+                "                                       * *                            9 - CALCULADORA FERIADOS                                   * *",
                 "                                       * *                                                                                       * *",
                 "                                       * *                            0 - VOLTAR À PÁGINA INICIAL                                * *",
                 "                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *",
@@ -271,6 +279,26 @@ public class CalculadoraApp {
                 case 5:
                     clearScreen();
                     printdiaXMenu();
+                    break;
+                    
+                case 6:
+                    clearScreen();
+                    calculadoraDiaEspecifico();
+                    break;
+                
+                case 7:
+                    clearScreen();
+                    printFimDeSemana();
+                    break;
+                    
+                case 8:
+                    clearScreen();
+                    printDiasNUteis();
+                    break;
+                
+                case 9:
+                    clearScreen();
+                    printFeriados();
                     break;
             }
         } while (op != 0);
@@ -642,7 +670,164 @@ public class CalculadoraApp {
             System.out.println("Pressione Enter Para Continuar");
         }
     }
+    private static void printDiasNUteis() {
+        //conta os dias úteis entre duas datas,
+        String resposta;
+        Integer d1dia, d1mes, d1ano, d2dia, d2mes, d2ano;
+        clearScreen();
 
+        System.out.println(                       "                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
+        System.out.println(                       "                                       * *                                                                                       * *");
+        d1dia = startMenu.readInt(           "                                       * *       Introduza o dia da primeira data:                                               * *");
+        System.out.println("> Valor Introduzido!\n");
+        d1mes = startMenu.readInt(           "                                       * *       Introduza o mês da primeira data:                                               * *");
+        System.out.println("> Valor Introduzido!\n");
+        d1ano = startMenu.readInt(           "                                       * *       Introduza o ano da primeira data:                                               * *");
+        System.out.println(                       "\n                                                                 A Primeira Data Foi Introduzida Com Sucesso");
+        System.out.println(                       "                                       * *                                                                                       * *");
+        System.out.println(                       "                                       * *                                                                                       * *");
+        d2dia = startMenu.readInt(           "                                       * *       Introduza o dia da segunda data:                                                * *");
+        System.out.println("> Valor Introduzido!\n");
+        d2mes = startMenu.readInt(           "                                       * *       Introduza o mês da segunda data:                                                * *");
+        System.out.println("> Valor Introduzido!\n");
+        d2ano = startMenu.readInt(           "                                       * *       Introduza o ano da segunda data:                                                * *");
+        System.out.println(                       "                                       * *                                                                                       * *");
+        System.out.println(                       "                                       * *                         A Segunda Data Foi Introduzida Com Sucesso                    * *");
+        System.out.println(                       "                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
+        System.out.println(                       "                                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *              \n");
+
+        LocalDate d1 = LocalDate.of(d1ano,d1mes,d1dia);
+        LocalDate d2 = LocalDate.of(d2ano,d2mes,d2dia);
+
+        resposta = principal.nUteisEntreDatas(d1,d2);
+        System.out.println(resposta);
+
+        System.out.println("Pressione Enter Para Continuar");
+        while (!startMenu.readString("").equals("")) {
+            System.out.println("Pressione Enter Para Continuar");
+        }
+    }
+    
+    
+    
+    //REVIEW
+    private static void printFimDeSemana() {
+        
+        String resposta;
+        Integer d1dia, d1mes, d1ano, d2dia, d2mes, d2ano;
+        clearScreen();
+
+        System.out.println(                       "                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
+        System.out.println(                       "                                       * *                                                                                       * *");
+        d1dia = startMenu.readInt(           "                                       * *       Introduza o dia da primeira data:                                               * *");
+        System.out.println("> Valor Introduzido!\n");
+        d1mes = startMenu.readInt(           "                                       * *       Introduza o mês da primeira data:                                               * *");
+        System.out.println("> Valor Introduzido!\n");
+        d1ano = startMenu.readInt(           "                                       * *       Introduza o ano da primeira data:                                               * *");
+        System.out.println(                       "\n                                                                 A Primeira Data Foi Introduzida Com Sucesso");
+        System.out.println(                       "                                       * *                                                                                       * *");
+        System.out.println(                       "                                       * *                                                                                       * *");
+        d2dia = startMenu.readInt(           "                                       * *       Introduza o dia da segunda data:                                                * *");
+        System.out.println("> Valor Introduzido!\n");
+        d2mes = startMenu.readInt(           "                                       * *       Introduza o mês da segunda data:                                                * *");
+        System.out.println("> Valor Introduzido!\n");
+        d2ano = startMenu.readInt(           "                                       * *       Introduza o ano da segunda data:                                                * *");
+        System.out.println(                       "                                       * *                                                                                       * *");
+        System.out.println(                       "                                       * *                         A Segunda Data Foi Introduzida Com Sucesso                    * *");
+        System.out.println(                       "                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
+        System.out.println(                       "                                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *              \n");
+
+        LocalDate d1 = LocalDate.of(d1ano,d1mes,d1dia);
+        LocalDate d2 = LocalDate.of(d2ano,d2mes,d2dia);
+
+        resposta = principal.fimDeSemana(d1,d2);
+        System.out.println(resposta);
+
+        System.out.println("Pressione Enter Para Continuar");
+        while (!startMenu.readString("").equals("")) {
+            System.out.println("Pressione Enter Para Continuar");
+        }
+    }
+    
+    private static void printFeriados() {
+        
+        String resposta;
+        Integer d1dia, d1mes, d1ano, d2dia, d2mes, d2ano;
+        clearScreen();
+
+        System.out.println(                       "                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
+        System.out.println(                       "                                       * *                                                                                       * *");
+        d1dia = startMenu.readInt(           "                                       * *       Introduza o dia da primeira data:                                               * *");
+        System.out.println("> Valor Introduzido!\n");
+        d1mes = startMenu.readInt(           "                                       * *       Introduza o mês da primeira data:                                               * *");
+        System.out.println("> Valor Introduzido!\n");
+        d1ano = startMenu.readInt(           "                                       * *       Introduza o ano da primeira data:                                               * *");
+        System.out.println(                       "\n                                                                 A Primeira Data Foi Introduzida Com Sucesso");
+        System.out.println(                       "                                       * *                                                                                       * *");
+        System.out.println(                       "                                       * *                                                                                       * *");
+        d2dia = startMenu.readInt(           "                                       * *       Introduza o dia da segunda data:                                                * *");
+        System.out.println("> Valor Introduzido!\n");
+        d2mes = startMenu.readInt(           "                                       * *       Introduza o mês da segunda data:                                                * *");
+        System.out.println("> Valor Introduzido!\n");
+        d2ano = startMenu.readInt(           "                                       * *       Introduza o ano da segunda data:                                                * *");
+        System.out.println(                       "                                       * *                                                                                       * *");
+        System.out.println(                       "                                       * *                         A Segunda Data Foi Introduzida Com Sucesso                    * *");
+        System.out.println(                       "                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
+        System.out.println(                       "                                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *              \n");
+
+        LocalDate d1 = LocalDate.of(d1ano,d1mes,d1dia);
+        LocalDate d2 = LocalDate.of(d2ano,d2mes,d2dia);
+
+        resposta = principal.feriados(d1,d2);
+        System.out.println(resposta);
+
+        System.out.println("Pressione Enter Para Continuar");
+        while (!startMenu.readString("").equals("")) {
+            System.out.println("Pressione Enter Para Continuar");
+        }
+    }
+       
+    
+    //REVIEW
+    private static void calculadoraDiaEspecifico(){
+        
+        String resposta,diaSemana;
+        Integer d1dia, d1mes, d1ano, d2dia, d2mes, d2ano;
+        clearScreen();
+
+        System.out.println(                       "                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
+        System.out.println(                       "                                       * *                                                                                       * *");
+        d1dia = startMenu.readInt(           "                                       * *       Introduza o dia da primeira data:                                               * *");
+        System.out.println("> Valor Introduzido!\n");
+        d1mes = startMenu.readInt(           "                                       * *       Introduza o mês da primeira data:                                               * *");
+        System.out.println("> Valor Introduzido!\n");
+        d1ano = startMenu.readInt(           "                                       * *       Introduza o ano da primeira data:                                               * *");
+        System.out.println(                       "\n                                                                 A Primeira Data Foi Introduzida Com Sucesso");
+        System.out.println(                       "                                       * *                                                                                       * *");
+        System.out.println(                       "                                       * *                                                                                       * *");
+        d2dia = startMenu.readInt(           "                                       * *       Introduza o dia da segunda data:                                                * *");
+        System.out.println("> Valor Introduzido!\n");
+        d2mes = startMenu.readInt(           "                                       * *       Introduza o mês da segunda data:                                                * *");
+        System.out.println("> Valor Introduzido!\n");
+        d2ano = startMenu.readInt(           "                                       * *       Introduza o ano da segunda data:                                                * *");
+        System.out.println(                       "                                       * *                                                                                       * *");
+        System.out.println(                       "                                       * *                         A Segunda Data Foi Introduzida Com Sucesso                    * *");
+        System.out.println(                       "                                       * *                                                                                       * *");
+        diaSemana = startMenu.readString(         "                                  * *       Introduza o dia da semana:                                                      * *");
+        System.out.println(                       "                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
+        System.out.println(                       "                                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *              \n");
+
+        LocalDate d1 = LocalDate.of(d1ano,d1mes,d1dia);
+        LocalDate d2 = LocalDate.of(d2ano,d2mes,d2dia);
+
+        resposta = principal.diaEspecifico(d1,d2,diaSemana);
+        System.out.println(resposta);
+
+        System.out.println("Pressione Enter Para Continuar");
+        while (!startMenu.readString("").equals("")) {
+            System.out.println("Pressione Enter Para Continuar");
+        }
+    }
 
     private static void calculadoraDiasUteisApos() {
         //dada uma data de inicio e um número de dias uteis, diz que data será

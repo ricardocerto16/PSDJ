@@ -2,10 +2,12 @@ package business;
 
 import interfaces.ICalculadora;
 import interfaces.IFusos;
+import java.time.DayOfWeek;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
+import java.time.temporal.Temporal;
 
 public class Resposta {
 
@@ -22,6 +24,41 @@ public class Resposta {
 
         sb.append(tipo).append(": ").append(res).append("\n");
 
+        return sb.toString();
+    }
+    
+    public String diaEspecifico(Temporal from, Temporal to,String diaSemana){
+        StringBuilder sb = new StringBuilder();
+        String ds = diaSemana.toLowerCase();
+        DayOfWeek dow = null;
+        switch (ds) {
+            case "segunda":
+                dow = DayOfWeek.MONDAY;
+                break;
+            case "terça":
+                dow = DayOfWeek.TUESDAY;
+                break;
+            case "quarta":
+                dow = DayOfWeek.WEDNESDAY;
+                break;
+            case "quinta":
+                dow = DayOfWeek.THURSDAY;
+                break;
+            case "sexta":
+                dow = DayOfWeek.FRIDAY;
+                break;
+            case "sabado":
+                dow = DayOfWeek.SATURDAY;
+                break;
+            case "domingo":
+                dow = DayOfWeek.SUNDAY;
+                break;
+            default:
+                break;
+        }
+        int res = calc.numDiaEspecifico(from,to,dow);
+        sb.append("Existem: ").append(res).append(" ").append(ds).append("\n");
+        
         return sb.toString();
     }
 
@@ -67,11 +104,35 @@ public class Resposta {
 
 
 
+    public String nUteisEntreDatas(LocalDate d1,LocalDate d2){
+        StringBuilder sb = new StringBuilder();
+        int res = calc.naoUteisEntreDatas(d1,d2);
+
+        sb.append("Entre as duas datas introduzidas, existem ").append(res).append(" dias não úteis (sábado,domingo e feriados)");
+        return sb.toString();
+    }
+    
+    public String feriados(LocalDate d1, LocalDate d2){
+        StringBuilder sb = new StringBuilder();
+        int res = calc.numFeriados(d1, d2);
+        
+        sb.append("Entre as duas datas introduzidas,existem ").append(res).append(" feriados (apenas de Portugal)");
+        return sb.toString();
+    }
+    
     public String uteisEntreDatas(LocalDate d1,LocalDate d2){
         StringBuilder sb = new StringBuilder();
         int res = calc.uteisEntreDatas(d1,d2);
 
         sb.append("Entre as duas datas introduzidas, existem ").append(res).append(" dias úteis (contando com o dia da primeira data)");
+        return sb.toString();
+    }
+    
+    public String fimDeSemana(LocalDate d1, LocalDate d2){
+        StringBuilder sb = new StringBuilder();
+        int res = calc.numFimDeSemana(d1, d2);
+        
+        sb.append("Entre as duas datas introduzidas, existem ").append(res).append(" fins de semana");
         return sb.toString();
     }
 

@@ -157,6 +157,7 @@ public class Calculadora implements ICalculadora {
             if(isFeriado(d1)) numF++;
         }
         
+        System.out.println(numF);
         return numF;
     }
     
@@ -169,7 +170,7 @@ public class Calculadora implements ICalculadora {
         LocalDate f1 = LocalDate.of(ano, Month.JANUARY, 1);
         LocalDate f2 = LocalDate.of(ano, Month.MARCH,30);
         LocalDate f3 = LocalDate.of(ano, Month.APRIL,1);
-        LocalDate f4 = LocalDate.of(ano, Month.APRIL,25);
+        LocalDate f4 = LocalDate.of(ano, 4,25);
         LocalDate f5 = LocalDate.of(ano, Month.MAY,1);
         LocalDate f6 = LocalDate.of(ano, Month.MAY,31);
         LocalDate f7 = LocalDate.of(ano, Month.JUNE,10);
