@@ -10,14 +10,12 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Set;
 
-import static java.time.zone.ZoneRulesProvider.getAvailableZoneIds;
-
 
 public class CalculadoraApp {
 
     private static Resposta principal;
     private static RelogioUser rel;
-    private static Menu startMenu, duracaoMenu, calculadoraMenu, uteisMenu, adicionaRemoveMenu, diaXMenu, diamesMenu, diaanoMenu;
+    private static Menu startMenu, duracaoMenu, calculadoraMenu, uteisMenu, adicionaRemoveMenu, diaXMenu, diamesMenu, diaanoMenu, fusoshMenu;
 
 
     private CalculadoraApp() {}
@@ -72,7 +70,7 @@ public class CalculadoraApp {
                 "                                                 * *                    3 - DIA DO MÊS                                 * *",
                 "                                                 * *                    4 - DIA DO ANO                                 * *",
                 "                                                 * *                    5 - ADICIONAR/SUBTRAIR DE UMA DATA             * *",
-                "                                                 * *                    6 - CONVERSOR DE FUSOS HORÁRIOS                * *",
+                "                                                 * *                    6 - FUSOS HORÁRIOS                             * *",
                 "                                                 * *                    7 - DURAÇÃO DE UMA VIAGEM                      * *",
                 "                                                 * *                    8 - AJUDA !                                    * *",
 
@@ -168,7 +166,15 @@ public class CalculadoraApp {
         };
 
 
-
+        String [] fusosh = {
+                "                                       * *                                                                                       * *",
+                "                                       * *                            1 - TEMPO DE UMA VIAGEM                                    * *",
+                "                                       * *                                                                                       * *",
+                "                                       * *                            2 - TEMPO ATUAL NUMA ZONA                                  * *",
+                "                                       * *                                                                                       * *",
+                "                                       * *                            0 - VOLTAR À PÁGINA INICIAL                                * *",
+                "                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *",
+        };
 
 
         startMenu = new Menu(start);
@@ -179,6 +185,7 @@ public class CalculadoraApp {
         diaXMenu = new Menu(xdia);
         diamesMenu = new Menu(diames);
         diaanoMenu = new Menu(diaano);
+        fusoshMenu = new Menu(fusosh);
     }
 
 
@@ -219,7 +226,7 @@ public class CalculadoraApp {
 
                 case 6:
                     clearScreen();
-                    //CONVERSOR DE FUSOS HORARIOS
+                    printFusosHorariosMenu();
                     break;
 
                 case 7:
@@ -338,17 +345,17 @@ public class CalculadoraApp {
             switch (op) {
                 case 1:
                     clearScreen();
-                    calculadoraDataXDia();
+
                     break;
 
                 case 2:
                     clearScreen();
-                    calculadoraSemanaXDia();
+
                     break;
 
                 case 3:
                     clearScreen();
-                    calculadoraXDiaData();
+                    //calculadoraXDiaData();
                     break;
             }
         } while (op != 0);
@@ -403,6 +410,29 @@ public class CalculadoraApp {
         } while (op != 0);
     }
 
+
+    private static void printFusosHorariosMenu() {
+        int op;
+        do {
+            op = fusoshMenu.showMenu();
+            switch (op) {
+                case 1:
+                    clearScreen();
+                    //calculadoraPrimeiroDiaAno();
+                    break;
+
+                case 2:
+                    clearScreen();
+                    //calculadoraUltimoDiaAno();
+                    break;
+
+                case 3:
+                    clearScreen();
+                    //calculadoraComumBissexto();
+                    break;
+            }
+        } while (op != 0);
+    }
 
 
 

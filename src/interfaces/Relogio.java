@@ -1,4 +1,4 @@
-package business;
+package interfaces;
 
 public interface Relogio {
 
