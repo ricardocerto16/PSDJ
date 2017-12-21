@@ -67,13 +67,12 @@ public class CalculadoraApp {
                 "                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *",
                 "                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *",
                 "                                                 * *                    1 - CALCULADORA                                * *",
-                "                                                 * *                    2 - DATA E HORA EM ...                         * *",
-                "                                                 * *                    3 - DIA DO MÊS                                 * *",
-                "                                                 * *                    4 - DIA DO ANO                                 * *",
-                "                                                 * *                    5 - ADICIONAR/SUBTRAIR DE UMA DATA             * *",
-                "                                                 * *                    6 - FUSOS HORÁRIOS                             * *",
-                "                                                 * *                    7 - DURAÇÃO DE UMA VIAGEM                      * *",
-                "                                                 * *                    8 - AJUDA !                                    * *",
+                "                                                 * *                    2 - DIA DO MÊS                                 * *",
+                "                                                 * *                    3 - DIA DO ANO                                 * *",
+                "                                                 * *                    4 - ADICIONAR/SUBTRAIR DE UMA DATA             * *",
+                "                                                 * *                    5 - FUSOS HORÁRIOS                             * *",
+                "                                                 * *                    6 - DURAÇÃO DE UMA VIAGEM                      * *",
+                "                                                 * *                    7 - AJUDA !                                    * *",
 
         };
 
@@ -177,7 +176,7 @@ public class CalculadoraApp {
 
         String [] fusosh = {
                 "                                       * *                                                                                       * *",
-                "                                       * *                            1 - DIFRENÇA DE FUSOS ENTRE 2 ZONAS                                    * *",
+                "                                       * *                            1 - DIFRENÇA DE FUSOS ENTRE 2 ZONAS                        * *",
                 "                                       * *                                                                                       * *",
                 "                                       * *                            2 - TEMPO ATUAL NUMA ZONA                                  * *",
                 "                                       * *                                                                                       * *",
@@ -210,35 +209,35 @@ public class CalculadoraApp {
                     printCalculadoraMenu();
                     break;
 
+               // case 2:
+               //     clearScreen();
+
+                //calculadoraDataHoraEm();
+                //    carregarMenus();
+
+                //    break;
+
                 case 2:
-                    clearScreen();
-
-                    calculadoraDataHoraEm();
-                    carregarMenus();
-
-                    break;
-
-                case 3:
                     clearScreen();
                     printDiaMesMenu();
                     break;
 
-                case 4:
+                case 3:
                     clearScreen();
                     printDiaAnoMenu();
                     break;
 
-                case 5:
+                case 4:
                     clearScreen();
                     printAdicionaRemoveMenu();
                     break;
 
-                case 6:
+                case 5:
                     clearScreen();
                     printFusosHorariosMenu();
                     break;
 
-                case 7:
+                case 6:
                     clearScreen();
                     //DURAÇÃO DE UMA VIAGEM sld 2-> 22++
                     break;
@@ -1062,7 +1061,7 @@ public class CalculadoraApp {
 
 
 
-
+/*
     private static void calculadoraDataHoraEm() {
         //dado um pais, dizer a data e hora nesse país
 
@@ -1128,7 +1127,7 @@ public class CalculadoraApp {
         }
     }
 
-
+*/
 
     private static void calculadoraPrimeiroDiaMes() {
         //data do primeiro dia de um dado mes (2 -> sld 31); retornar também o dia da semana
