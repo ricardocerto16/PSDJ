@@ -6,6 +6,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.TimeZone;
 
 public class Fusos implements IFusos {
 
@@ -38,6 +39,13 @@ public class Fusos implements IFusos {
     }
 
 
+    public boolean validTimeZone(String id) {
+        for (String tzId : TimeZone.getAvailableIDs()) {
+            if(tzId.equals(id))
+                return true;
+        }
+        return false;
+    }
 
     /*
     private static void calculadoraDataHoraEm() {

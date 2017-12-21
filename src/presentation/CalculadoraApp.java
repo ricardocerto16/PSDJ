@@ -46,8 +46,7 @@ public class CalculadoraApp {
 
 
 
-        // NAO MEXER NAO MEXER NAO MEXER NAO MEXER NAO MEXER NAO MEXER NAO MEXER NAO MEXER NAO MEXER NAO MEXER NAO MEXER NAO MEXER NAO MEXER NAO MEXER NAO MEXER NAO MEXER
-        // TA DIREITO TA DIREITO TA DIREITO TA DIREITO TA DIREITO TA DIREITO TA DIREITO TA DIREITO TA DIREITO TA DIREITO TA DIREITO TA DIREITO TA DIREITO TA DIREITO TA DIREITO
+
         String [] start= {
                 "                                       * *                                                  "+data+" * *",
                 "                                       * *     ______    _                                                                       * *",
@@ -1278,13 +1277,18 @@ public class CalculadoraApp {
         ZonedDateTime zdt;
         System.out.println("                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
         System.out.println("                                       * *                                                                                       * *");
-        local = startMenu.readString("                                    * *       Introduza a Zona:                                                               * *");
-        System.out.println("> Valor Introduzido!\n");
-        System.out.println("                                       * *                         A Zona Foi Introduzida Com Sucesso                             * *");
+        local = startMenu.readString("                                       * *       Introduza a Zona:                                                               * *");
+        System.out.println("                                       * *                                                                                       * *");
         System.out.println("                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
-        System.out.println("                                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *              \n");
+
+        while (fusos.validTimeZone(local) == false) {
+            System.out.println("  \n\n                                     * *          >>>>>          A zona inserida é inválida      <<<<<<                * *");
+            local = startMenu.readString("                                     * *       Introduza uma Zona Válida:                                              * *");
+
+        }
 
         System.out.println(local);
+        System.out.println("> Valor Introduzido!\n");
 
         zdt = fusos.tempoAtual(local);
         System.out.println("O tempo atual é : " + zdt);
@@ -1317,8 +1321,14 @@ public class CalculadoraApp {
 
         System.out.println("\n\n");
         local1 = startMenu.readString("                                    * *       Introduza a Zona 1:                                                               * *");
-        System.out.println("> Valor Introduzido!\n");
 
+        while (fusos.validTimeZone(local1) == false) {
+            System.out.println("  \n\n                                     * *          >>>>>          A zona inserida é inválida      <<<<<<                * *");
+            local1 = startMenu.readString("                                     * *       Introduza uma Zona Válida:                                              * *");
+
+        }
+
+        System.out.println("> Valor Introduzido!\n");
         System.out.println(">>>> DATA, HORA E ZONA 1 INTRODUZIDAS COM SUCESSO!\n");
 
 
@@ -1340,8 +1350,14 @@ public class CalculadoraApp {
 
         System.out.println("\n\n");
         local2 = startMenu.readString("                                    * *       Introduza a Zona 2:                                                               * *");
-        System.out.println("> Valor Introduzido!\n");
 
+        while (fusos.validTimeZone(local2) == false) {
+            System.out.println("  \n\n                                     * *          >>>>>          A zona inserida é inválida      <<<<<<                * *");
+            local2 = startMenu.readString("                                     * *       Introduza uma Zona Válida:                                              * *");
+
+        }
+
+        System.out.println("> Valor Introduzido!\n");
         System.out.println(">>>> DATA,HORA E ZONA 2 INTRODUZIDAS COM SUCESSO!\n\n\n");
 
 

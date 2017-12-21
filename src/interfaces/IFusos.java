@@ -10,5 +10,5 @@ public interface IFusos {
 
     public ZonedDateTime tempoAtual(String local);
 
-
+    public boolean validTimeZone(String id);
 }
