@@ -5,10 +5,7 @@ import business.Resposta;
 import business.RelogioUser;
 import business.Fusos;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.time.*;
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -180,7 +177,7 @@ public class CalculadoraApp {
 
         String [] fusosh = {
                 "                                       * *                                                                                       * *",
-                "                                       * *                            1 - TEMPO DE UMA VIAGEM                                    * *",
+                "                                       * *                            1 - DIFRENÇA DE FUSOS ENTRE 2 ZONAS                                    * *",
                 "                                       * *                                                                                       * *",
                 "                                       * *                            2 - TEMPO ATUAL NUMA ZONA                                  * *",
                 "                                       * *                                                                                       * *",
@@ -450,7 +447,7 @@ public class CalculadoraApp {
             switch (op) {
                 case 1:
                     clearScreen();
-                    //calculadoraPrimeiroDiaAno();
+                    fusoDiferenca2Tempos();
                     break;
 
                 case 2:
@@ -1301,10 +1298,7 @@ public class CalculadoraApp {
         System.out.println(local);
 
         zdt = fusos.tempoAtual(local);
-        StringBuilder sb;
-        sb = new StringBuilder();
-        sb.append("O tempo atual ").append(local).append(" é o seguinte  ").append(zdt);
-        System.out.println(zdt);
+        System.out.println("O tempo atual é : " + zdt);
 
         System.out.println("Pressione Enter Para Continuar");
         while (!startMenu.readString("").equals("")) {
@@ -1313,10 +1307,11 @@ public class CalculadoraApp {
     }
 
 
-    private static void fusoTempo2Viagens() {
+    private static void fusoDiferenca2Tempos() {
 
         int d1dia, d1mes, d1ano, d2dia, d2mes, d2ano;
         int hora1 , segundos1 , minuto1 , hora2 , segundos2 , minuto2;
+        String local1 , local2;
 
         d1dia = startMenu.readInt("                                       * *       Introduza o dia da data 1:                                         * *");
         System.out.println("> Valor Introduzido!\n");
@@ -1331,7 +1326,11 @@ public class CalculadoraApp {
         segundos1 = startMenu.readInt("                                       * *       Introduza os segundos da data 1:                                         * *");
         System.out.println("> Valor Introduzido!\n");
 
-        System.out.println(">>>> DATA E HORA 1 INTRODUZIDAS COM SUCESSO!\n");
+        System.out.println("\n\n");
+        local1 = startMenu.readString("                                    * *       Introduza a Zona 1:                                                               * *");
+        System.out.println("> Valor Introduzido!\n");
+
+        System.out.println(">>>> DATA, HORA E ZONA 1 INTRODUZIDAS COM SUCESSO!\n");
 
 
 
@@ -1344,19 +1343,31 @@ public class CalculadoraApp {
 
         hora2 = startMenu.readInt("                                       * *       Introduza as horas da hora 2:                                         * *");
         System.out.println("> Valor Introduzido!\n");
-        minuto2 = startMenu.readInt("                                       * *       Introduza as horas da hora 1:                                         * *");
+        minuto2 = startMenu.readInt("                                       * *       Introduza as minutos da hora 2:                                         * *");
         System.out.println("> Valor Introduzido!\n");
-        segundos2 = startMenu.readInt("                                       * *       Introduza as horas da hora 1:                                         * *");
+        segundos2 = startMenu.readInt("                                       * *       Introduza as segundos da hora 2:                                         * *");
         System.out.println("> Valor Introduzido!\n");
 
-        System.out.println(">>>> DATA E HORA 2 INTRODUZIDAS COM SUCESSO!\n\n\n");
+
+        System.out.println("\n\n");
+        local2 = startMenu.readString("                                    * *       Introduza a Zona 2:                                                               * *");
+        System.out.println("> Valor Introduzido!\n");
+
+        System.out.println(">>>> DATA,HORA E ZONA 2 INTRODUZIDAS COM SUCESSO!\n\n\n");
+
 
         LocalDateTime date1 = LocalDateTime.of(d1ano,d1mes,d1dia,hora1,minuto1,segundos1);
-        LocalDateTime d1 = LocalDateTime.of(d2ano,d2mes,d2dia,hora2,minuto2,segundos2);
+        LocalDateTime date2 = LocalDateTime.of(d2ano,d2mes,d2dia,hora2,minuto2,segundos2);
 
-        
-        // CRIAR LOCAL DATE TIMES E INVOCAR A FUNÇÃO DOS FUSOS
-        // DAR PRINT DO RESULTADO
+        Duration dura = fusos.diferencaFusos(date1,local1,date2,local2);
+
+        System.out.println("A diferença entre fusos é de :  " + dura);
+
+        System.out.println("Pressione Enter Para Continuar");
+        while (!startMenu.readString("").equals("")) {
+            System.out.println("Pressione Enter Para Continuar");
+        }
+
     }
 
 

@@ -14,7 +14,7 @@ public class Fusos implements IFusos {
 
     }
 
-    public Duration tempoViagem(LocalDateTime inicio , String zonainicial , LocalDateTime fim , String zonafinal){
+    public Duration diferencaFusos(LocalDateTime inicio , String zonainicial , LocalDateTime fim , String zonafinal){
 
         ZoneId id_inicio = ZoneId.of(zonainicial);
         ZoneId id_final = ZoneId.of(zonafinal);

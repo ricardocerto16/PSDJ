@@ -6,7 +6,7 @@ import java.time.ZonedDateTime;
 
 public interface IFusos {
 
-    public Duration tempoViagem(LocalDateTime inicio , String zonainicial , LocalDateTime fim , String zonafinal);
+    public Duration diferencaFusos(LocalDateTime inicio , String zonainicial , LocalDateTime fim , String zonafinal);
 
     public ZonedDateTime tempoAtual(String local);
 
