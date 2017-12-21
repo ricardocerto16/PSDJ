@@ -69,7 +69,7 @@ public class CalculadoraApp {
                 "                                                 * *                    3 - DIA DO ANO                                 * *",
                 "                                                 * *                    4 - ADICIONAR/SUBTRAIR DE UMA DATA             * *",
                 "                                                 * *                    5 - FUSOS HORÁRIOS                             * *",
-                "                                                 * *                    6 - DURAÇÃO DE UMA VIAGEM                      * *",
+                "                                                 * *                    6 - CRONOMETRO                                 * *",
                 "                                                 * *                    7 - AJUDA !                                    * *",
 
         };
@@ -207,14 +207,6 @@ public class CalculadoraApp {
                     printCalculadoraMenu();
                     break;
 
-               // case 2:
-               //     clearScreen();
-
-                //calculadoraDataHoraEm();
-                //    carregarMenus();
-
-                //    break;
-
                 case 2:
                     clearScreen();
                     printDiaMesMenu();
@@ -237,7 +229,7 @@ public class CalculadoraApp {
 
                 case 6:
                     clearScreen();
-                    //DURAÇÃO DE UMA VIAGEM sld 2-> 22++
+                    //CRONOMETRO
                     break;
 
             }
