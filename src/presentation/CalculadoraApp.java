@@ -6,8 +6,6 @@ import business.RelogioUser;
 import business.Fusos;
 
 import java.time.*;
-import java.util.ArrayList;
-import java.util.Set;
 
 
 public class CalculadoraApp {
@@ -1358,7 +1356,7 @@ public class CalculadoraApp {
         LocalDateTime date1 = LocalDateTime.of(d1ano,d1mes,d1dia,hora1,minuto1,segundos1);
         LocalDateTime date2 = LocalDateTime.of(d2ano,d2mes,d2dia,hora2,minuto2,segundos2);
 
-        Duration dura = fusos.diferencaFusos(date1,local1,date2,local2);
+        Duration dura = fusos.duracaoViagem(date1,local1,date2,local2);
 
         System.out.println("A diferença entre fusos é de :  " + dura);
 

@@ -14,12 +14,15 @@ public class Fusos implements IFusos {
 
     }
 
-    public Duration diferencaFusos(LocalDateTime inicio , String zonainicial , LocalDateTime fim , String zonafinal){
+
+    public Duration duracaoViagem(LocalDateTime inicio , String zonainicial , LocalDateTime fim , String zonafinal){
 
         ZoneId id_inicio = ZoneId.of(zonainicial);
         ZoneId id_final = ZoneId.of(zonafinal);
-        ZonedDateTime tempoinicio = inicio.atZone(id_inicio);
-        ZonedDateTime tempofinal = inicio.atZone(id_final);
+
+        ZonedDateTime tempoinicio = ZonedDateTime.of(inicio,id_inicio);
+        ZonedDateTime tempoiniciolocalfinal = tempoinicio.withZoneSameInstant(id_final);
+        ZonedDateTime tempofinal = ZonedDateTime.of(fim, id_final);
 
         Duration duracao = Duration.between(tempoinicio,tempofinal);
         return duracao;
@@ -36,7 +39,7 @@ public class Fusos implements IFusos {
 
 
 
-/* SERVE PARA VER COMO VAMOS VERIFICAR SE UM FUSO EXISTE OU NÃO
+    /*
     private static void calculadoraDataHoraEm() {
         //dado um pais, dizer a data e hora nesse país
 
@@ -102,7 +105,7 @@ public class Fusos implements IFusos {
         }
     }
 
-*/
+    */
 
 }
 
