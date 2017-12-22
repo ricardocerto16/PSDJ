@@ -6,6 +6,7 @@ import java.time.DayOfWeek;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.temporal.Temporal;
 
@@ -306,9 +307,10 @@ public class Resposta {
         return str;
 
     }
-
+    /*
     //Normalizar offset no menu principal
-    public String normalizarOffset(String str) {
+    public String normalizarOffset(ZoneOffset zot) {
+        String str = zot.toString();
         if (str.length() == 1) {
             str = "(+00:00)";
         } else {
@@ -316,7 +318,7 @@ public class Resposta {
         }
 
         return str;
-    }
+    }*/
 
     //Normalizar fuso horario no menu principal
     public String normalizarFuso(String str) {
@@ -340,6 +342,7 @@ public class Resposta {
         return str;
     }
 
+ 
     //Tradução dos dias da semana
     public String normalizarSemana(String str) {
         switch (str){

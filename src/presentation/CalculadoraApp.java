@@ -6,6 +6,9 @@ import business.RelogioUser;
 import business.Fusos;
 
 import java.time.*;
+import static java.time.OffsetTime.now;
+import java.time.format.DateTimeFormatter;
+import static java.time.format.DateTimeFormatter.ofPattern;
 
 
 public class CalculadoraApp {
@@ -29,30 +32,23 @@ public class CalculadoraApp {
 
 
     private static void carregarMenus() {
-        String fuso = rel.getFuso();
-        String offset = principal.normalizarOffset(rel.getOffSet());
-        String diasemana = principal.normalizarSemana(rel.getDiaSemana());
-        String dia = principal.normalizarTempo(rel.getDia());
-        String mes = principal.normalizarMes(rel.getMes());
-        String ano = String.valueOf(rel.getAno());
-
-        String hora = principal.normalizarTempo(rel.getHora());
-        String minuto = principal.normalizarTempo(rel.getMinuto());
-
-        String data = principal.normalizarData(diasemana+",  "+dia+"  "+mes+"  "+ano);
-        String zona = principal.normalizarFuso(fuso+offset);
-
-
-
-
+        
+        String zona = rel.getZoneAndOffset();
+        
+        
+        String time = rel.getFormattedTime();
+        
+        
+        String dataF = rel.getFormattedData();
+       
 
 
         String [] start= {
-                "                                       * *                                                  "+data+" * *",
+                "                                       * *                                                  "+dataF+"        * *",
                 "                                       * *     ______    _                                                                       * *",
-                "                                       * *    /_  __/   (_)   ____ ___   ___                          "+hora+"H : "+minuto+"m                  * *",
+                "                                       * *    /_  __/   (_)   ____ ___   ___                          "+time+"               * *",
                 "                                       * *     / /     / /   / __ `__ \\ / _ \\                                                    * *",
-                "                                       * *    / /     / /   / / / / / //  __/          "+zona+"    * *",
+                "                                       * *    / /     / /   / / / / / //  __/                    "+zona+"           * *",
                 "                                       * *   /_/     /_/   /_/ /_/ /_/ \\___/                                                     * *",
                 "                                       * *                                                                                       * *",
                 "                                       * *     ______            __                   __           __                            * *",
