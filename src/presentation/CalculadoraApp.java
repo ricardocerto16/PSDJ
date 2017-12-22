@@ -1379,7 +1379,7 @@ public class CalculadoraApp {
 
 
 
-
+// função para limpar o ecra
     private static void clearScreen(){
         for (int i=0;i<=20;i++){
             System.out.println("\n");
