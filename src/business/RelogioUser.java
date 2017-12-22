@@ -52,45 +52,12 @@ public class RelogioUser implements Relogio {
         return hm.format(formatter);
     }
     
-    public String getFormattedData(){
+    public String getFormattedData(String diasemana){
         LocalDate ld = LocalDate.now();
         String data = ld.format(ofPattern("dd MMMM yyyy"));
-        String diasemana = normalizarSemana(ld.getDayOfWeek().toString());  
         return diasemana + ", " + data;
     }
     
-    public String normalizarSemana(String str) {
-        switch (str){
-            case "MONDAY":
-                str = "Segunda-Feira";
-                break;
-
-            case "TUESDAY":
-                str = "Terça-Feira";
-                break;
-
-            case "WEDNESDAY":
-                str = "Quarta-Feira";
-                break;
-
-            case "THURSDAY":
-                str = "Quinta-Feira";
-                break;
-
-            case "FRIDAY":
-                str = "Sexta-Feira";
-                break;
-
-            case "SATURDAY":
-                str = "Sábado";
-                break;
-
-            case "SUNDAY":
-                str = "Domingo";
-                break;
-        }
-        return str;
-    }
     
     /*
     public String getDiaSemana() {

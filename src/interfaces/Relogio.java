@@ -14,19 +14,6 @@ public interface Relogio {
     
     public String getFormattedTime();
     
-    public String getFormattedData();
+    public String getFormattedData(String dia);
 
-    /*
-    public String getDiaSemana();
-
-    public String getDia();
-
-    public String getMes();
-
-    public String getAno();
-
-    public String getHora();
-
-    public String getMinuto();
-*/
 }

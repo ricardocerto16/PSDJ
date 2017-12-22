@@ -38,8 +38,8 @@ public class CalculadoraApp {
         
         String time = rel.getFormattedTime();
         
-        
-        String dataF = rel.getFormattedData();
+        String diasemana = principal.normalizarSemana(LocalDate.now().getDayOfWeek().toString());  
+        String dataF = rel.getFormattedData(diasemana);
        
 
 

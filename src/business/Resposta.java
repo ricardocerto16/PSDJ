@@ -277,6 +277,7 @@ public class Resposta {
 
     ///////////////USER CLOCK/////////////
 
+    
     //Normalizar horas e minutos || meses no menu principal
     public String normalizarTempo(String str) {
         if (str.length() == 1)
@@ -285,62 +286,6 @@ public class Resposta {
         return str;
     }
 
-    //Normalizar data no menu principal
-    public String normalizarData(String str) {
-        if (str.length() < 36) {
-            int dif = 36 - str.length();
-
-            if (dif % 2 == 0) {
-
-                for (int i = 1; i <= dif / 2; i++) {
-                    str = " " + str + " ";
-                }
-            } else {
-
-                for (int i = 1; i <= dif / 2; i++) {
-                    str = " " + str + " ";
-
-                }
-                str = str + " ";
-            }
-        }
-        return str;
-
-    }
-    /*
-    //Normalizar offset no menu principal
-    public String normalizarOffset(ZoneOffset zot) {
-        String str = zot.toString();
-        if (str.length() == 1) {
-            str = "(+00:00)";
-        } else {
-            str = "(" + str + ")";
-        }
-
-        return str;
-    }*/
-
-    //Normalizar fuso horario no menu principal
-    public String normalizarFuso(String str) {
-        if (str.length() < 38) {
-            int dif = 38 - str.length();
-
-            if (dif % 2 == 0) {
-
-                for (int i = 1; i <= dif / 2; i++) {
-                    str = " " + str + " ";
-                }
-            } else {
-
-                for (int i = 1; i <= dif / 2; i++) {
-                    str = " " + str + " ";
-
-                }
-                str = str + " ";
-            }
-        }
-        return str;
-    }
 
  
     //Tradução dos dias da semana
