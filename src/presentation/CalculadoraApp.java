@@ -920,7 +920,7 @@ public class CalculadoraApp {
 
 
     private static void calculadoraRemove() {
-        //Remover a uma data, se não quiser remover um dos valores, meter 0;
+
 
 
         String resposta;
@@ -960,7 +960,7 @@ public class CalculadoraApp {
 
 
     private static void calculadoraDataXDia() {
-        //dizer qual a data do xº dia do ano (1-> sld18);
+
 
         String resposta;
         Integer dia,d1ano;
@@ -992,7 +992,7 @@ public class CalculadoraApp {
 
 
     private static void calculadoraXDiaData(){
-        //dizer qual o xº dia do ano de uma dada data(1-> sld19);
+
 
         String resposta;
         Integer d1dia, d1mes, d1ano;
@@ -1021,7 +1021,6 @@ public class CalculadoraApp {
 
 
     private static void calculadoraSemanaXDia() {
-        //dizer qual a semana do xº dia do ano (2-> sld6); ?fazer calculadora de todos os dias da semana, p exempl, listar as datas de todas as segundas feiras ?
 
         String resposta;
         Integer dia,d1ano;
@@ -1046,15 +1045,14 @@ public class CalculadoraApp {
     
 
     private static void calculadoraPrimeiroDiaMes() {
-        //data do primeiro dia de um dado mes (2 -> sld 31); retornar também o dia da semana
+
 
         String resposta;
         Integer d1dia,d1mes,d1ano;
         clearScreen();
+        d1dia = 1;
         System.out.println(                       "                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
         System.out.println(                       "                                       * *                                                                                       * *");
-        d1dia = startMenu.readInt(           "                                       * *       Introduza o dia da data:                                                        * *");
-        System.out.println("> Valor Introduzido!\n");
         d1mes = startMenu.readInt(           "                                       * *       Introduza o mês da data:                                                        * *");
         System.out.println("> Valor Introduzido!\n");
         d1ano = startMenu.readInt(           "                                       * *       Introduza o ano da data:                                                        * *");
@@ -1077,15 +1075,14 @@ public class CalculadoraApp {
 
 
     private static void calculadoraUltimoDiaMes() {
-        //data do ultimo dia de um dado mes (2 -> sld 31); retornar também o dia da semana
+
 
         String resposta;
         Integer d1dia,d1mes,d1ano;
+        d1dia = 1;
         clearScreen();
         System.out.println(                       "                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
         System.out.println(                       "                                       * *                                                                                       * *");
-        d1dia = startMenu.readInt(           "                                       * *       Introduza o dia da data:                                                        * *");
-        System.out.println("> Valor Introduzido!\n");
         d1mes = startMenu.readInt(           "                                       * *       Introduza o mês da data:                                                        * *");
         System.out.println("> Valor Introduzido!\n");
         d1ano = startMenu.readInt(           "                                       * *       Introduza o ano da data:                                                        * *");
@@ -1095,8 +1092,9 @@ public class CalculadoraApp {
 
 
         LocalDate d1 = LocalDate.of(d1ano,d1mes,d1dia);
+        LocalDate end = d1.withDayOfMonth(d1.lengthOfMonth());
 
-        resposta = principal.ultDiaMes(d1);
+        resposta = principal.ultDiaMes(end);
         System.out.println(resposta);
 
 
@@ -1108,7 +1106,7 @@ public class CalculadoraApp {
 
 
     private static void calculadoraQuantosDiaMes() {
-        //quantos dias tem um dado mês ? ir ao UltimoDiaMes e ir buscar o valor do dia
+
 
 
         String resposta;
@@ -1136,17 +1134,15 @@ public class CalculadoraApp {
     }
 
     private static void calculadoraPrimeiroDiaAno() {
-        //data do primeiro dia de um dado ano (2 -> sld 31); retornar também o dia da semana
+
 
         String resposta;
         Integer d1dia,d1mes,d1ano;
+        d1dia = 1;
+        d1mes = 1;
         clearScreen();
         System.out.println(                       "                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
         System.out.println(                       "                                       * *                                                                                       * *");
-        d1dia = startMenu.readInt(           "                                       * *       Introduza o dia da data:                                                        * *");
-        System.out.println("> Valor Introduzido!\n");
-        d1mes = startMenu.readInt(           "                                       * *       Introduza o mês da data:                                                        * *");
-        System.out.println("> Valor Introduzido!\n");
         d1ano = startMenu.readInt(           "                                       * *       Introduza o ano da data:                                                        * *");
         System.out.println(                       "                                       * *                         A Data Foi Introduzida Com Sucesso                            * *");
         System.out.println(                       "                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
@@ -1167,17 +1163,13 @@ public class CalculadoraApp {
 
 
     private static void calculadoraUltimoDiaAno() {
-        //data do ultimo dia de um dado ano (2 -> sld 31); retornar também o dia da semana
+
 
         String resposta;
-        Integer d1dia,d1mes,d1ano;
+        Integer d1dia=1,d1mes=1,d1ano;
         clearScreen();
         System.out.println(                       "                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
         System.out.println(                       "                                       * *                                                                                       * *");
-        d1dia = startMenu.readInt(           "                                       * *       Introduza o dia da data:                                                        * *");
-        System.out.println("> Valor Introduzido!\n");
-        d1mes = startMenu.readInt(           "                                       * *       Introduza o mês da data:                                                        * *");
-        System.out.println("> Valor Introduzido!\n");
         d1ano = startMenu.readInt(           "                                       * *       Introduza o ano da data:                                                        * *");
         System.out.println(                       "                                       * *                         A Data Foi Introduzida Com Sucesso                            * *");
         System.out.println(                       "                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
