@@ -14,7 +14,7 @@ import java.time.temporal.Temporal;
 
 public class Calculadora implements ICalculadora {
 
-    //devolve os anos,meses ou dias entre duas datas
+
     public int difDatas(Temporal from, Temporal to, String tipo) {
 
         switch (tipo.toLowerCase()) {
@@ -28,8 +28,8 @@ public class Calculadora implements ICalculadora {
         return 0;
     }
 
-    //REVIEW
-    //Devolve o número de ocorrências de um dia especifico(Sabado,Domingo...)
+
+
     public int numDiaEspecifico(Temporal from, Temporal to, DayOfWeek dia){
         int totalDias = difDatas(from,to,"dias");
         int dias = 0;
@@ -99,7 +99,7 @@ public class Calculadora implements ICalculadora {
     }
 
 
-    //Calcula o número de dias úteis entre duas datas
+
     public int uteisEntreDatas(Temporal from, Temporal to) {
         int naoUteis = naoUteisEntreDatas(from,to);
         
@@ -118,7 +118,7 @@ public class Calculadora implements ICalculadora {
         return dias_uteis;
         */
     
-    //REVIEW
+
     //Calcula o número de fim de semanas entre duas datas
     public int numFimDeSemana(Temporal from, Temporal to){
         int totalDias = difDatas(from,to,"dias");

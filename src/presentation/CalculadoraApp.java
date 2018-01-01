@@ -530,7 +530,7 @@ public class CalculadoraApp {
     }
 
     private static void calculadoraDiasSemana()  {
-        //Em que dia da semana calhou uma dada data
+
 
 
         String resposta;
@@ -561,7 +561,7 @@ public class CalculadoraApp {
     }
 
     private static void calculadoraComumBissexto(){
-        //dizer se o ano introduzido era/será comum ou bissexto (meter também 365 ou 366)
+
 
         String resposta;
         Integer d1ano;
@@ -586,7 +586,7 @@ public class CalculadoraApp {
     }
 
     private static void calculadoraSemanaCalendario() {
-        // A que semana pertence uma determinada data
+
 
         String resposta;
         Integer d1dia,d1mes,d1ano;
@@ -615,7 +615,7 @@ public class CalculadoraApp {
     }
 
     private static void calculadoraDiasUteisEntreDatas() {
-        //conta os dias úteis entre duas datas,
+
         String resposta;
         Integer d1dia, d1mes, d1ano, d2dia, d2mes, d2ano;
         clearScreen();
@@ -652,7 +652,7 @@ public class CalculadoraApp {
         }
     }
     private static void printDiasNUteis() {
-        //conta os dias úteis entre duas datas,
+
         String resposta;
         Integer d1dia, d1mes, d1ano, d2dia, d2mes, d2ano;
         clearScreen();
@@ -811,7 +811,7 @@ public class CalculadoraApp {
     }
 
     private static void calculadoraDiasUteisApos() {
-        //dada uma data de inicio e um número de dias uteis, diz que data será
+
         String resposta;
         Integer d1dia,d1mes,d1ano;
         Integer uteis;
@@ -844,7 +844,7 @@ public class CalculadoraApp {
 
 
     private static void calculadoraDiasUteisAntes() {
-        //dada uma data de inicio e um número de dias uteis, diz que data foi
+
         String resposta;
         Integer d1dia,d1mes,d1ano;
         Integer uteis;
@@ -878,8 +878,6 @@ public class CalculadoraApp {
 
 
     private static void calculadoraAdiciona() {
-        //Adicionar a uma data, se não quiser adicionar um dos valores, meter 0;
-
 
         String resposta;
         Integer d1dia, d1mes, d1ano,adddia, addsemana,addmes, addano;
@@ -920,7 +918,6 @@ public class CalculadoraApp {
 
 
     private static void calculadoraRemove() {
-
 
 
         String resposta;
@@ -986,7 +983,7 @@ public class CalculadoraApp {
           while (!startMenu.readString("").equals("")) {
               System.out.println("Pressione Enter Para Continuar");
          }
-        //clearScreen();
+        clearScreen();
 
     }
 
@@ -1013,10 +1010,10 @@ public class CalculadoraApp {
         resposta = principal.xDiaData(d1);
         System.out.println(resposta);
 
-        //System.out.println("Pressione Enter Para Continuar");
-        //while (!startMenu.readString("").equals("")) {
-        //    System.out.println("Pressione Enter Para Continuar");
-        //}
+        System.out.println("Pressione Enter Para Continuar");
+            while (!startMenu.readString("").equals("")) {
+               System.out.println("Pressione Enter Para Continuar");
+        }
     }
 
 
@@ -1190,7 +1187,7 @@ public class CalculadoraApp {
 
 
     private static void fusoTempoAtual() {
-        // falta verificar se a  opção é válida
+
         String local;
         clearScreen();
         ZonedDateTime zdt;
@@ -1298,7 +1295,7 @@ public class CalculadoraApp {
 
 
 
-// função para limpar o ecra
+
     private static void clearScreen(){
         for (int i=0;i<=20;i++){
             System.out.println("\n");
