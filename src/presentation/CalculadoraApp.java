@@ -248,18 +248,20 @@ public class CalculadoraApp {
     private static void printCronometroMenu() {
         int op;
         String time = "Inicie o cronometro";
+        String resp = " * *               O tempo do cronómetro é :  ";
         do {
             op = cronometroMenu.showMenu();
             switch (op) {
                 case 1:
                     clearScreen();
                     cron.start();
+                    System.out.println(" * *                CRONOMETRO INICIADO COM SUCESSO      * * \n");
                     break;
 
                 case 2:
                     clearScreen();
                     time = cron.print();
-                    System.out.println(time);
+                    System.out.println( resp + time + "  segundos      * *");
                     System.out.println("Pressione Enter Para Continuar");
                     while (!startMenu.readString("").equals("")) {
                         System.out.println("Pressione Enter Para Continuar");
