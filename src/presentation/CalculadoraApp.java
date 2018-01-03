@@ -1,6 +1,7 @@
 package presentation;
 
 
+import business.Cronometro;
 import business.Resposta;
 import business.RelogioUser;
 import business.Fusos;
@@ -16,7 +17,8 @@ public class CalculadoraApp {
     private static Resposta principal;
     private static RelogioUser rel;
     private static Fusos fusos;
-    private static Menu startMenu, duracaoMenu, calculadoraMenu, uteisMenu, adicionaRemoveMenu, diaXMenu, diamesMenu, diaanoMenu, fusoshMenu;
+    private static Cronometro cron;
+    private static Menu startMenu, cronometroMenu, duracaoMenu, calculadoraMenu, uteisMenu, adicionaRemoveMenu, diaXMenu, diamesMenu, diaanoMenu, fusoshMenu;
 
 
     private CalculadoraApp() {}
@@ -25,6 +27,7 @@ public class CalculadoraApp {
         principal = new Resposta();
         rel = new RelogioUser();
         fusos = new Fusos();
+        cron = new Cronometro();
         carregarMenus();
         printMenuPrincipal();
     }
@@ -178,6 +181,16 @@ public class CalculadoraApp {
         };
 
 
+        String [] cronometro = {
+                "                                       * *                                                                                       * *",
+                "                                       * *                            1 - START                                                  * *",
+                "                                       * *                                                                                       * *",
+                "                                       * *                            2 - STOP                                                   * *",
+                "                                       * *                                                                                       * *",
+                "                                       * *                            0 - VOLTAR À PÁGINA INICIAL                                * *",
+                "                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *",
+        };
+
         startMenu = new Menu(start);
         calculadoraMenu = new Menu(calculadora);
         duracaoMenu = new Menu(duracao);
@@ -187,6 +200,7 @@ public class CalculadoraApp {
         diamesMenu = new Menu(diames);
         diaanoMenu = new Menu(diaano);
         fusoshMenu = new Menu(fusosh);
+        cronometroMenu = new Menu(cronometro);
     }
 
 
@@ -224,13 +238,37 @@ public class CalculadoraApp {
 
                 case 6:
                     clearScreen();
-                    //CRONOMETRO
+                    printCronometroMenu();
                     break;
 
             }
         } while (op != 0);
     }
 
+    private static void printCronometroMenu() {
+        int op;
+        String time = "Inicie o cronometro";
+        do {
+            op = cronometroMenu.showMenu();
+            switch (op) {
+                case 1:
+                    clearScreen();
+                    cron.start();
+                    break;
+
+                case 2:
+                    clearScreen();
+                    time = cron.print();
+                    System.out.println(time);
+                    System.out.println("Pressione Enter Para Continuar");
+                    while (!startMenu.readString("").equals("")) {
+                        System.out.println("Pressione Enter Para Continuar");
+                    }
+                    break;
+            }
+        } while (op != 0);
+
+    }
 
     private static void printCalculadoraMenu() {
         int op;
