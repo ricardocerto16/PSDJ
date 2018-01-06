@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 
 public class TransCaixa {
     
+    
     public static TransCaixa of(String ct, String cx, double val, LocalDateTime dt) {
         // LocalDateTime dt assume-se como válido
         return new TransCaixa(ct, cx, val, dt);

@@ -6,6 +6,7 @@ import Modulos.TransCaixa;
 import Modulos.Utilidades;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import java.util.List;
 
@@ -21,24 +22,29 @@ import java.util.List;
  */
 public class Benchmarking {
 
-    private static Menu menuficheiro, menutestes;
+    private static Menu menuficheiro, menustestes;
     private static Caixa caixa;
     private static Crono crono;
     private static Utilidades util;
     private static TransCaixa trans;
-   
-    
+
+  
+     
     private Benchmarking(){};
     
     
     public static void main (String [] args) throws IOException {
-        
-      
+       
+        List<TransCaixa> ltc;
+        String ficheiro;
         util = new Utilidades();
-        crono = new Crono();
-        caixa = new Caixa();
+        //crono = new Crono();
+        //caixa = new Caixa();
+        
+        
         carregaMenu();
-        printMenuFicheiro();
+        menuFicheiro(); 
+        
 }
     
     
@@ -73,37 +79,35 @@ public class Benchmarking {
         };
         
        menuficheiro = new Menu(ficheiro);
-       menutestes = new Menu(testes);   
+       menustestes = new Menu(testes);   
     
     }
     
     
-    private static void printMenuFicheiro() throws IOException{
+    private static void menuFicheiro() throws IOException{
         int op;
-        String t1 = "transCaixa1M";
-        String t2 = "transCaixa2M";
-        String t4 = "transcaixa4M";
-        String t8 = "transcaixa8M";
-        List<TransCaixa> ltc;
+        String ficheiro = null;
+        
         
         do{
             op = menuficheiro.showMenu();
             switch (op){
                 case 1:
-                  ltc = carregaFich(t1,util); 
-                  printMenuTestes();
+                  ficheiro = "transCaixa1M.txt";
+                  System.out.println("Ficheiro transCaixa1M.txt escolhido com sucesso");
+                  menuTestes(ficheiro);
                   break;
 
                 case 2:
-                  //carregaFich(f2);  
+                    ficheiro  = "transCaixa2M.txt";
                 break;
                 
                 case 3:
-                    //carregaFich(f3);
+                    ficheiro  = "transCaixa4M.txt";
                     break;
 
                 case 4:
-                    //carregaFich(f4);
+                    ficheiro  = "transCaixa8M.txt";
                 break;
              }
         }while(op != 0);        
@@ -114,7 +118,7 @@ public class Benchmarking {
   private static List<TransCaixa> carregaFich(String ficheiro, Utilidades util) throws IOException{
      Crono.start();
      List<TransCaixa> transcaixa = util.setup(ficheiro);
-     System.out.println("Setup com Streams -> " + Crono.stop()*1000 + "milesegundos");
+     System.out.println("Setup com Streams -> " + Crono.stop()*1000 + "  milesegundos");
      System.out.println("Transações lidas -> " + transcaixa.size());
      util.memoryUsage();
         
@@ -122,14 +126,17 @@ public class Benchmarking {
   }
   
   
-  private static void printMenuTestes() throws IOException{
+  private static void menuTestes(String ficheiro) throws IOException{
         int op;
+        List<TransCaixa> ltc;
+        ltc = carregaFich(ficheiro,util);
+        
         
         do{
-            op = menuficheiro.showMenu();
+            op = menustestes.showMenu();
             switch (op){
                 case 1:
-                  
+                    System.out.println("fds");
                     break;
 
                 case 2:
@@ -177,4 +184,6 @@ public class Benchmarking {
         }while(op != 0);        
         
       
+        }
+  
 }
