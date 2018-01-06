@@ -90,6 +90,14 @@ public class Caixa {
             if(ldt1.equals(ldt2)) return 0;
             else if(ldt1.isBefore(ldt2)) return -1; else return 1 ; 
        };
+    
+    public static Comparator<TransCaixa> transPorData2 = 
+      (TransCaixa tc1, TransCaixa tc2) -> { 
+            LocalDateTime ldt1 = tc1.getData();
+            LocalDateTime ldt2 = tc2.getData();
+            if(ldt1.equals(ldt2)) return 0;
+            else if(ldt1.isBefore(ldt2)) return -1; else return 1 ; 
+       };
 
 }
 

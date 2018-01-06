@@ -1,9 +1,11 @@
 package Apresentação;
 
+import Interfaces.ITestes;
 import Modulos.Caixa;
 import Modulos.Crono;
 import Modulos.TransCaixa;
 import Modulos.Utilidades;
+import Testes.Teste1;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -136,7 +138,8 @@ public class Benchmarking {
             op = menustestes.showMenu();
             switch (op){
                 case 1:
-                    System.out.println("fds");
+                    ITestes teste1 = new Teste1(ltc);
+                    teste1.execute();
                     break;
 
                 case 2:
