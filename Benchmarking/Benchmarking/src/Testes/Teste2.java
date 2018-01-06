@@ -15,8 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 import static java.util.stream.Collectors.toCollection;
 import static java.util.stream.Collectors.toList;
+import java.util.stream.Stream;
 
 /**
  *
@@ -55,6 +57,7 @@ public class Teste2 implements ITestes{
     SimpleEntry<Double,List<TransCaixa>>  reslist = Utilidades.testeBoxGenW(listSup);
     System.out.println("Tempo List Sequencial : " + reslist + "   Res: " + reslist.getValue().get(0));
     
+    // TreeSet
     /**
     * STREAMS PARELELAS
     */
@@ -63,11 +66,19 @@ public class Teste2 implements ITestes{
   
   
   private List<TransCaixa> soma2listas(List<TransCaixa> listaOrd, int vintep100){
-      List<TransCaixa> prim20 = lisOrd.stream()
+      List<TransCaixa> prim20 = listaOrd.stream()
               .limit(vintep100).collect(toCollection(() -> new ArrayList<>()));
-      List<TransCaixa> ult20 = lisOrd.stream()
-              sorted(Caixa.transPorData2()).limit(vintep100).collect(toCollection(() -> new ArrayList<>()));
-  
+      List<TransCaixa> ult20 = listaOrd.stream()
+              .sorted(Caixa.transPorData2).limit(vintep100).collect(toCollection(() -> new ArrayList<>()));
+     
+      
+      List<TransCaixa> res = new ArrayList<>();
+      res = Stream.concat(prim20.stream(),
+              ult20.stream()).collect(Collectors.toList());
+      
+      
+      return res;
+      
   }
     
     
