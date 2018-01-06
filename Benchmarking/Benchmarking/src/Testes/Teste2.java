@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Testes;
 import Interfaces.ITestes;
 import Modulos.Caixa;
@@ -52,34 +48,98 @@ public class Teste2 implements ITestes{
      */
 
     // LIST 
+    Supplier<List<List<TransCaixa>>> listSup = () -> selec2listas(listaOrd, vintep100);
+    SimpleEntry<Double,List<List<TransCaixa>>>  reslist = Utilidades.testeBoxGenW(listSup);
+    System.out.println("Tempo List S.Sequencial : " + reslist.getKey());
     
-    Supplier<List<TransCaixa>> listSup = () -> soma2listas(listaOrd, vintep100);
-    SimpleEntry<Double,List<TransCaixa>>  reslist = Utilidades.testeBoxGenW(listSup);
-    System.out.println("Tempo List Sequencial : " + reslist.getKey());
+    // TREESET
+    Supplier<List<TreeSet<TransCaixa>>> treeSup = () -> selec2tree(treeOrd,vintep100);
+    SimpleEntry<Double,List<TreeSet<TransCaixa>>> restree = Utilidades.testeBoxGenW(treeSup);
+    System.out.println("Tempo TreeSet S.Sequencial :  " + restree.getKey());
     
-    // TreeSet
+    
     /**
     * STREAMS PARELELAS
     */
 
-    }
+    // LIST 
+    Supplier<List<List<TransCaixa>>> listSuppar = () -> selec2listasparalelas(listaOrd, vintep100);
+    SimpleEntry<Double,List<List<TransCaixa>>>  reslistpar = Utilidades.testeBoxGenW(listSuppar);
+    System.out.println("Tempo List S.Paralela : " + reslistpar.getKey());
+    
+    // TREESET
+    Supplier<List<TreeSet<TransCaixa>>> treeSuppar = () -> selec2treeparalelas(treeOrd,vintep100);
+    SimpleEntry<Double,List<TreeSet<TransCaixa>>> restreepar = Utilidades.testeBoxGenW(treeSup);
+    System.out.println("Tempo TreeSet S.Paralela :  " + restreepar.getKey()); 
+  
+
   
   
-  private List<TransCaixa> soma2listas(List<TransCaixa> listaOrd, int vintep100){
+}
+
+    /**
+     * FUNÇÕES AUXILIARES
+     */
+    
+  private List<List<TransCaixa>> selec2listas(List<TransCaixa> listaOrd, int vintep100){
       List<TransCaixa> prim20 = listaOrd.stream()
               .limit(vintep100).collect(toCollection(() -> new ArrayList<>()));
       List<TransCaixa> ult20 = listaOrd.stream()
               .sorted(Caixa.transPorData2).limit(vintep100).collect(toCollection(() -> new ArrayList<>()));
      
       
-      List<TransCaixa> res = new ArrayList<>();
-      res = Stream.concat(prim20.stream(),
-              ult20.stream()).collect(Collectors.toList());
+      List<List<TransCaixa>> result = new ArrayList<>();
+      result.add(prim20);
+      result.add(ult20);
       
-      
-      return res;
-      
+      return result;
   }
     
-    
+      
+  private List<TreeSet<TransCaixa>> selec2tree(TreeSet<TransCaixa> treeOrd, int vintep100){
+      TreeSet<TransCaixa> prim20 = treeOrd.stream()
+              .limit(vintep100).collect(toCollection(() -> new TreeSet<>(Caixa.transPorData)));
+      TreeSet<TransCaixa> ult20 = treeOrd.stream()
+              .sorted(Caixa.transPorData2).limit(vintep100).collect(toCollection(() -> new TreeSet<>(Caixa.transPorData)));
+      
+      List<TreeSet<TransCaixa>> result = new ArrayList<>();
+      result.add(prim20);
+      result.add(ult20);
+      
+      
+      return result;
+  }
+  
+  
+  private List<List<TransCaixa>> selec2listasparalelas(List<TransCaixa> listaOrd , int vintep100){
+      List<TransCaixa> prim20 = listaOrd.parallelStream()
+              .limit(vintep100).collect(toCollection(() -> new ArrayList<>()));
+      List<TransCaixa> ult20 = listaOrd.parallelStream()
+              .sorted(Caixa.transPorData2).limit(vintep100).collect(toCollection(() -> new ArrayList<>()));
+      
+      List<List<TransCaixa>> result = new ArrayList<>();
+      result.add(prim20);
+      result.add(ult20);
+      
+      return result;
+  
+      
+  }
+  
+ 
+ private List<TreeSet<TransCaixa>> selec2treeparalelas(TreeSet<TransCaixa> treeOrd, int vintep100){
+      TreeSet<TransCaixa> prim20 = treeOrd.parallelStream()
+              .limit(vintep100).collect(toCollection(() -> new TreeSet<>(Caixa.transPorData)));
+      TreeSet<TransCaixa> ult20 = treeOrd.parallelStream()
+              .sorted(Caixa.transPorData2).limit(vintep100).collect(toCollection(() -> new TreeSet<>(Caixa.transPorData)));
+      
+      List<TreeSet<TransCaixa>> result = new ArrayList<>();
+      result.add(prim20);
+      result.add(ult20);
+      
+      
+      return result;
+  } 
 }
+    
+    
