@@ -6,6 +6,7 @@ import Modulos.Crono;
 import Modulos.TransCaixa;
 import Modulos.Utilidades;
 import Testes.Teste1;
+import Testes.Teste2;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -143,7 +144,8 @@ public class Benchmarking {
                     break;
 
                 case 2:
-                    
+                    ITestes teste2 = new Teste2(ltc);
+                    teste2.execute();
                     break;
                 
                 case 3:
