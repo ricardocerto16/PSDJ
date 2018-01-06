@@ -1,3 +1,5 @@
+package Modulos;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,6 +14,7 @@
  *
  * @author asus
  */
+import Modulos.Caixa;
 import static java.lang.System.out;
 import java.io.IOException;
 import java.nio.file.Files;
