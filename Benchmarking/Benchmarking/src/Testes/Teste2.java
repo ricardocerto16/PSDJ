@@ -55,7 +55,7 @@ public class Teste2 implements ITestes{
     
     Supplier<List<TransCaixa>> listSup = () -> soma2listas(listaOrd, vintep100);
     SimpleEntry<Double,List<TransCaixa>>  reslist = Utilidades.testeBoxGenW(listSup);
-    System.out.println("Tempo List Sequencial : " + reslist + "   Res: " + reslist.getValue().get(0));
+    System.out.println("Tempo List Sequencial : " + reslist.getKey());
     
     // TreeSet
     /**
