@@ -8,6 +8,7 @@ import Modulos.Utilidades;
 import Testes.Teste1;
 import Testes.Teste2;
 import Testes.Teste3;
+import Testes.Teste5;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -158,7 +159,8 @@ public class Benchmarking {
                     
                     break;
                 case 5:
-                  
+                    ITestes teste5 = new Teste5(ltc);
+                    teste5.execute();
                     break;
 
                 case 6:
