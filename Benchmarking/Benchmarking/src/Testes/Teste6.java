@@ -22,7 +22,7 @@ import static java.util.stream.Collectors.groupingBy;
  * @author Ricardo
  */
 public class Teste6 implements ITestes{
-    private List<TransCaixa> ltc;
+    private final List<TransCaixa> ltc;
     
     public Teste6(List<TransCaixa> ltc){
         this.ltc = ltc;

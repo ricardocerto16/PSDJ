@@ -26,7 +26,7 @@ import java.util.stream.IntStream;
  */
 public class Teste3 implements ITestes {
     
-    private List<TransCaixa> ltc;
+    private final List<TransCaixa> ltc;
     
     public Teste3(List<TransCaixa> ltc){
         this.ltc = ltc;

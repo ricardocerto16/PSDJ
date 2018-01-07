@@ -22,7 +22,7 @@ import static java.util.stream.Collectors.toList;
  * @author Ricardo
  */
 public class Teste5 implements ITestes{
-    private List<TransCaixa> ltc;
+    private final List<TransCaixa> ltc;
     
     public Teste5(List<TransCaixa> ltc){
         this.ltc = ltc;
