@@ -8,6 +8,7 @@ import Modulos.Utilidades;
 import Testes.Teste1;
 import Testes.Teste2;
 import Testes.Teste3;
+import Testes.Teste4;
 import Testes.Teste5;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -156,7 +157,8 @@ public class Benchmarking {
                     break;
 
                 case 4:
-                    
+                    ITestes teste4 = new Teste4();
+                    teste4.execute();
                     break;
                 case 5:
                     ITestes teste5 = new Teste5(ltc);

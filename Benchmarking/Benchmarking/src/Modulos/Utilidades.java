@@ -78,7 +78,7 @@ public class Utilidades {
     
     public static <R> SimpleEntry<Double,R> testeBoxGenW(Supplier<? extends R> supplier) {
         // warmup
-        for(int i = 1 ; i <= 3; i++) 
+        for(int i = 1 ; i <= 5; i++) 
             supplier.get();
         
         System.gc();
