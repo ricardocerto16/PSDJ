@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.Set;
 import java.util.function.Supplier;
 import static java.util.stream.Collectors.toList;
@@ -34,9 +35,24 @@ public class Teste3 implements ITestes {
  
     @Override
     public void execute() {
-        List<Integer> listaRand = randomList();
+        int i;
+        
+        do{
+            Scanner in = new Scanner(System.in);
+            System.out.println("Insira o número de Milhões que pretende usar neste teste (1 a 8)");
+            i = in.nextInt();
+            
+            if(i>=1 && i<=8) break;
+            else System.out.println("Número inválido!");
+            
+        }while(true);
+        
+        System.out.println("Sai");
+        
+        List<Integer> listaRand = randomList(i);
         int[] arrayRand = listToArray(listaRand);
         int tamanho = listaRand.size();
+        
         
         //IntStream
         Supplier<IntStream> supplier1 = () -> listaRand.stream().mapToInt(l->l).distinct();
@@ -60,15 +76,67 @@ public class Teste3 implements ITestes {
                            "----->" + result3.getValue().size() +"\n\n");
     }
     
-    private List<Integer> randomList(){
-        List<Integer> lista = new ArrayList<Integer>();
+    
+    
+    
+    private List<Integer> randomList(int caso){
         Random r = new Random();
         int i;
-        for(i=0;i<ltc.size();i++){
-            lista.add(r.nextInt(9999+1)+1);
+        switch(caso){
+            case 1:
+                List<Integer> lista = new ArrayList<Integer>();
+                for(i=0;i<1000000;i++){
+                    lista.add(r.nextInt(9999+1)+1);
+                }
+                return lista;
+            case 2:
+                List<Integer> lista2 = new ArrayList<Integer>();
+                for(i=0;i<2000000;i++){
+                    lista2.add(r.nextInt(9999+1)+1);
+                }
+                return lista2;
+            case 3:
+                List<Integer> lista3 = new ArrayList<Integer>();
+                for(i=0;i<3000000;i++){
+                    lista3.add(r.nextInt(9999+1)+1);
+                }
+                return lista3;
+            case 4:
+                List<Integer> lista4 = new ArrayList<Integer>();
+                for(i=0;i<4000000;i++){
+                    lista4.add(r.nextInt(9999+1)+1);
+                }
+                return lista4;
+            case 5:
+                List<Integer> lista5 = new ArrayList<Integer>();
+                for(i=0;i<5000000;i++){
+                    lista5.add(r.nextInt(9999+1)+1);
+                }
+                return lista5;
+            case 6:
+                List<Integer> lista6 = new ArrayList<Integer>();
+                for(i=0;i<6000000;i++){
+                    lista6.add(r.nextInt(9999+1)+1);
+                }
+                return lista6;
+            case 7:
+                List<Integer> lista7 = new ArrayList<Integer>();
+                for(i=0;i<7000000;i++){
+                    lista7.add(r.nextInt(9999+1)+1);
+                }
+                return lista7;
+            case 8:
+                List<Integer> lista8 = new ArrayList<Integer>();
+                for(i=0;i<8000000;i++){
+                    lista8.add(r.nextInt(9999+1)+1);
+                }
+                return lista8;
+                
         }
-        return lista;
+        
+        return null;
     }
+    
     
     
     /**
