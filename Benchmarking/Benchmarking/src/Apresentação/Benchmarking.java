@@ -6,6 +6,7 @@ import Modulos.Crono;
 import Modulos.TransCaixa;
 import Modulos.Utilidades;
 import Testes.Teste1;
+import Testes.Teste10;
 import Testes.Teste2;
 import Testes.Teste3;
 import Testes.Teste4;
@@ -185,7 +186,8 @@ public class Benchmarking {
                     break;
 
                 case 10:
-                    
+                    ITestes teste10 = new Teste10(ltc);
+                    teste10.execute();
                     break;
                 
                 case 11:

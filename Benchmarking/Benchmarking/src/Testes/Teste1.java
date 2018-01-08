@@ -18,7 +18,7 @@ import java.util.function.Supplier;
  * @author Ricardo
  */
 public class Teste1 implements ITestes {
-    private List<TransCaixa> ltc;
+    private final List<TransCaixa> ltc;
     
     public Teste1(List<TransCaixa> ltc){
         this.ltc = ltc;
