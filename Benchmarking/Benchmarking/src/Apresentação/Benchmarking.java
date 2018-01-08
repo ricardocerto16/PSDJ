@@ -109,14 +109,20 @@ public class Benchmarking {
 
                 case 2:
                     ficheiro  = "transCaixa2M.txt";
+                    System.out.println("Ficheiro transCaixa2M.txt escolhido com sucesso");
+                    menuTestes(ficheiro);
                 break;
                 
                 case 3:
                     ficheiro  = "transCaixa4M.txt";
+                    System.out.println("Ficheiro transCaixa4M.txt escolhido com sucesso");
+                    menuTestes(ficheiro);
                     break;
 
                 case 4:
                     ficheiro  = "transCaixa8M.txt";
+                    System.out.println("Ficheiro transCaixa8M.txt escolhido com sucesso");
+                    menuTestes(ficheiro);
                 break;
              }
         }while(op != 0);        
