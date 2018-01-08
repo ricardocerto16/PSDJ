@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
-import static java.util.stream.Collectors.counting;
 
 /**
  *
@@ -28,6 +27,7 @@ public class Teste10 implements ITestes{
         this.ltc = ltc;
     }
     
+    @Override
     public void execute(){
 
         
