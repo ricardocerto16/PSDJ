@@ -10,9 +10,9 @@ import Modulos.TransCaixa;
 import Modulos.Utilidades;
 import java.time.Month;
 import java.util.AbstractMap.SimpleEntry;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
@@ -36,11 +36,14 @@ public class Teste10 implements ITestes{
        */  
         Supplier<Map<Month,Double>> j8sup = () -> ltc.stream()
                    .collect(Collectors.groupingBy(t -> 
-		        t.getData().getMonth(),
+		        t.getData().getMonth(),TreeMap::new,
                         Collectors.summingDouble(t->t.getValor()<20.0 ? t.getValor() *0.15 : 
                                                 (t.getValor() >= 20.0 && t.getValor()<29.0 ? t.getValor()*0.20 : t.getValor()*0.23))));
         SimpleEntry<Double,Map<Month,Double>> resultj8 = Utilidades.testeBoxGenW(j8sup);
         System.out.println("Tempo com Java 8: " + resultj8.getKey() + "\n ");
+        
+        
+        
         
         for(Map.Entry<Month,Double> entry: resultj8.getValue().entrySet()){
             System.out.println("IVA no Mês "+entry.getKey()+ ": " + entry.getValue()+"\n");
@@ -64,7 +67,7 @@ public class Teste10 implements ITestes{
     
 
     private Map<Month,Double> ivapormes(List<TransCaixa> ltc) {
-        Map<Month,Double> ivam = new HashMap<>(); 
+        Map<Month,Double> ivam = new TreeMap<>(); 
         
         for(TransCaixa trans : ltc){
         
