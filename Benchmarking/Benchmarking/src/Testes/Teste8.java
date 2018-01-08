@@ -30,9 +30,8 @@ public class Teste8 implements ITestes{
         /**
          * JAVA 8
          */        
-        Supplier<String> j8sup = () -> ltc.stream().filter(t -> t.getData().getHour() >= 16 && t.getData().getHour() < 21)
-                        .max((t1, t2) -> Double.compare(t1.getValor(), t2.getValor()))
-                        .toString();
+        Supplier<String> j8sup = () -> ltc.stream().filter(t -> t.getData().getHour() > 15 && t.getData().getHour() < 21)
+                        .max((t1, t2) -> Double.compare(t1.getValor(), t2.getValor())).get().getTrans();
         SimpleEntry<Double,String> resultj8 = Utilidades.testeBoxGenW(j8sup);
         System.out.println("Tempo com Java 8 : " + resultj8.getKey() + "  Código :  " + resultj8.getValue());
         
@@ -57,7 +56,7 @@ public class Teste8 implements ITestes{
         for(TransCaixa trans : ltc){
             int hora = trans.getData().getHour();
             
-            if( hora >= 15 && hora < 21){
+            if( hora > 15 && hora < 21){
                 valor = trans.getValor();
                 
                 if(valor > maior) {
