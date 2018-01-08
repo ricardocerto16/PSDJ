@@ -33,9 +33,9 @@ public class Teste10 implements ITestes{
       /**
        * JAVA 8
        */  
-       Supplier<Map<Month,Double>> j8sup = () -> ltc.stream()
-               .collect(groupingBy(t -> t.getData().getMonth()))
-               .
+       //Supplier<Map<Month,Double>> j8sup = () -> ltc.stream()
+            //   .collect(groupingBy(t -> t.getData().getMonth()))
+            //   .
       
       
       /**
