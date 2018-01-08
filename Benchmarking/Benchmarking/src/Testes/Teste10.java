@@ -14,7 +14,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
-import static java.util.stream.Collectors.groupingBy;
+import java.util.stream.Collectors;
+import static java.util.stream.Collectors.counting;
 
 /**
  *
@@ -33,9 +34,13 @@ public class Teste10 implements ITestes{
       /**
        * JAVA 8
        */  
-       //Supplier<Map<Month,Double>> j8sup = () -> ltc.stream()
-            //   .collect(groupingBy(t -> t.getData().getMonth()))
-            //   .
+        Supplier<Map<Month,Double>> j8sup = () -> ltc.stream()
+                   .collect(Collectors.groupingBy(t -> 
+		        t.getData().getMonth(),
+                        Collectors.summingDouble(t->t.getValor()<20.0 ? t.getValor() *0.15 : 
+                                                (t.getValor() >= 20.0 && t.getValor()<29.0 ? t.getValor()*0.20 : t.getValor()*0.23))));
+        SimpleEntry<Double,Map<Month,Double>> resultj8 = Utilidades.testeBoxGenW(j8sup);
+        System.out.println("Tempo com Java 8: " + resultj8.getKey() + " IVA : " + resultj8.getValue());
       
       
       /**
@@ -68,8 +73,8 @@ public class Teste10 implements ITestes{
             }
             
             adicionaiva(mes,valoriva,ivam);
-            
-        }
+                    
+        }          
         
         return ivam;
     }
