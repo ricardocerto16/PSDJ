@@ -16,6 +16,7 @@ import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.function.Supplier;
 
 /**
@@ -30,7 +31,20 @@ public class Teste9 implements ITestes {
     }
     
     public void execute(){
-    
+        int i;
+        final int sem;
+        
+        do{
+            Scanner in = new Scanner(System.in);
+            System.out.println("Insira a semana em que ver o total faturado (1 a 53)");
+            i = in.nextInt();
+            
+            if(i>=1 && i<=53) break;
+            else System.out.println("Número inválido!");
+            
+        }while(true);
+        
+        sem = i;
         /**
          * JAVA 8
          */
@@ -39,9 +53,9 @@ public class Teste9 implements ITestes {
         /**
          * JAVA 7
          */
-        Supplier<List<List<TransCaixa>>> j7sup = () -> listaSemanaTrans(ltc);
-        AbstractMap.SimpleEntry<Double,List<List<TransCaixa>>> resultj7 = Utilidades.testeBoxGenW(j7sup);
-        System.out.println("Tempo com Java 7 : " + resultj7.getKey() + " Semanas :  " + resultj7.getValue());
+        Supplier<Double> j7sup = () -> faturadoSemana(ltc,sem);
+        AbstractMap.SimpleEntry<Double,Double> resultj7 = Utilidades.testeBoxGenW(j7sup);
+        System.out.println("Tempo com Java 7 : " + resultj7.getKey() + " Total Faturado Semana  :  " + resultj7.getValue());
         
         
         
@@ -74,5 +88,17 @@ public class Teste9 implements ITestes {
     
      }
      
-     
+     private double faturadoSemana(List<TransCaixa> ltc , int semana){
+         List<List<TransCaixa>> listasem = new ArrayList<>();
+         listasem = listaSemanaTrans(ltc);
+         List<TransCaixa> ll = new ArrayList<>();
+         ll = listasem.get(semana);
+         double valor = 0.0;
+         
+         for(TransCaixa tt : ll) {
+             valor += tt.getValor();
+         }
+         
+         return valor;
+     }
 }
