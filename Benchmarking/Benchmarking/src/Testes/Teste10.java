@@ -40,16 +40,26 @@ public class Teste10 implements ITestes{
                         Collectors.summingDouble(t->t.getValor()<20.0 ? t.getValor() *0.15 : 
                                                 (t.getValor() >= 20.0 && t.getValor()<29.0 ? t.getValor()*0.20 : t.getValor()*0.23))));
         SimpleEntry<Double,Map<Month,Double>> resultj8 = Utilidades.testeBoxGenW(j8sup);
-        System.out.println("Tempo com Java 8: " + resultj8.getKey() + " IVA : " + resultj8.getValue());
-      
+        System.out.println("Tempo com Java 8: " + resultj8.getKey() + "\n ");
+        
+        for(Map.Entry<Month,Double> entry: resultj8.getValue().entrySet()){
+            System.out.println("IVA no Mês "+entry.getKey()+ ": " + entry.getValue()+"\n");
+        }
+        
+        
+        
       
       /**
        * JAVA 7
        */
         Supplier<Map<Month,Double>> j7sup = () -> ivapormes(ltc);
         SimpleEntry<Double,Map<Month,Double>> resultj7 = Utilidades.testeBoxGenW(j7sup);
-        System.out.println("Tempo com Java 7 : " + resultj7.getKey() + " IVA :  " + resultj7.getValue());
-      
+        System.out.println("Tempo com Java 7 : " + resultj7.getKey() + "\n ");
+        
+        for(Map.Entry<Month,Double> entry: resultj7.getValue().entrySet()){
+            System.out.println("IVA no Mês "+entry.getKey()+ ": " + entry.getValue()+"\n");
+        }
+    
     }
     
 
