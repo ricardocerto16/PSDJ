@@ -28,6 +28,8 @@ import java.util.function.Supplier;
 public class Teste9 implements ITestes {
     private final List<TransCaixa> ltc;
     
+    private List<List<TransCaixa>> listasem = new ArrayList<>();
+    
     public Teste9(List<TransCaixa> ltc){
         this.ltc = ltc;
     }
@@ -59,7 +61,7 @@ public class Teste9 implements ITestes {
         /**
          * JAVA 7
          */
-        Supplier<Double> j7sup = () -> faturadoSemana(ltc,sem);
+        Supplier<Double> j7sup = () -> faturadoSemana(ltc,sem,listasem);
         SimpleEntry<Double,Double> resultj7 = Utilidades.testeBoxGenW(j7sup);
         System.out.println("Tempo com Java 7 : " + resultj7.getKey() +"\n"+ 
                            "Total Faturado Semana " + sem + ": " + resultj7.getValue());
@@ -99,8 +101,7 @@ public class Teste9 implements ITestes {
      }
          
      
-     private double faturadoSemana(List<TransCaixa> ltc , int semana){
-         List<List<TransCaixa>> listasem = new ArrayList<>();
+     private double faturadoSemana(List<TransCaixa> ltc , int semana,List<List<TransCaixa>> listasem){
          listasem = listaSemanaTrans(ltc);
          
          List<TransCaixa> ll = new ArrayList<>();

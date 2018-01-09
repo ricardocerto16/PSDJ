@@ -157,7 +157,6 @@ public class Teste3 implements ITestes {
     }
     
     private int[] removeRepetidos(int[] array){
-        int[] semRep = new int[array.length];
         Set<Integer> set = new HashSet<Integer>();
         int i;
         
@@ -165,12 +164,14 @@ public class Teste3 implements ITestes {
             set.add(array[i]);
         }
         i=0;
+        int[] semRep = new int[set.size()];
+        
         for(Integer s: set){
             semRep[i] = s;
             i++;
         }
         
         return semRep;
-    }
+}
     
 }
