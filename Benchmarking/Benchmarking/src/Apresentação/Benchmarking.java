@@ -13,9 +13,8 @@ import Testes.Teste4;
 import Testes.Teste5;
 import Testes.Teste6;
 import Testes.Teste8;
-import java.io.BufferedReader;
+import Testes.Teste9;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 import java.util.List;
 
@@ -133,7 +132,7 @@ public class Benchmarking {
   private static List<TransCaixa> carregaFich(String ficheiro, Utilidades util) throws IOException{
      Crono.start();
      List<TransCaixa> transcaixa = util.setup(ficheiro);
-     System.out.println("Setup com Streams -> " + Crono.stop()*1000 + "  milesegundos");
+     System.out.println("Setup com Streams -> " + Crono.stop() + "  segundos");
      System.out.println("Transações lidas -> " + transcaixa.size());
      util.memoryUsage();
         
@@ -188,7 +187,8 @@ public class Benchmarking {
                     teste8.execute();
                     break;
                 case 9:
-                  
+                    ITestes teste9 = new Teste9(ltc);
+                    teste9.execute();
                     break;
 
                 case 10:

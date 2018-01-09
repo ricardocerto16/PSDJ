@@ -13,10 +13,12 @@ import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.temporal.IsoFields;
 import java.util.AbstractMap;
+import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeMap;
 import java.util.function.Supplier;
 
 /**
@@ -45,17 +47,22 @@ public class Teste9 implements ITestes {
         }while(true);
         
         sem = i;
+        List<List<TransCaixa>> lista = listaSemanaTrans(ltc);
         /**
          * JAVA 8
          */
-        
+        Supplier<Double> j8sup = () -> lista.get(sem).stream().map(t->t.getValor()).reduce(0.0, Double::sum);
+        SimpleEntry<Double,Double> resultj8 = Utilidades.testeBoxGenW(j8sup);
+        System.out.println("Tempo com Java 8 : " + resultj8.getKey() +"\n"+
+                           "Total Faturado Semana " + sem + ": " + resultj8.getValue());
         
         /**
          * JAVA 7
          */
         Supplier<Double> j7sup = () -> faturadoSemana(ltc,sem);
-        AbstractMap.SimpleEntry<Double,Double> resultj7 = Utilidades.testeBoxGenW(j7sup);
-        System.out.println("Tempo com Java 7 : " + resultj7.getKey() + " Total Faturado Semana  :  " + resultj7.getValue());
+        SimpleEntry<Double,Double> resultj7 = Utilidades.testeBoxGenW(j7sup);
+        System.out.println("Tempo com Java 7 : " + resultj7.getKey() +"\n"+ 
+                           "Total Faturado Semana " + sem + ": " + resultj7.getValue());
         
         
         
@@ -67,30 +74,35 @@ public class Teste9 implements ITestes {
        }
      
      private List<List<TransCaixa>> listaSemanaTrans(List<TransCaixa> ltc){
-         List<List<TransCaixa>> lista = new ArrayList<>();
-                 
-         for(TransCaixa trans : ltc){
-             LocalDateTime data = trans.getData();
-             int nsem = semanaCalendario(data);
-             List<TransCaixa> lmes = new ArrayList<>();
-             
-             if( lista.get(nsem)!= null){
-                 lmes = lista.get(nsem);
-                 lmes.add(trans);
-             } else {
-                 List<TransCaixa> ll = new ArrayList<>();
-                 lista.add(nsem,ll);
-             }
+         TreeMap<Integer,List<TransCaixa>> aux = new TreeMap<>();
          
+         for(TransCaixa trans :ltc){
+            LocalDateTime data = trans.getData();
+            int nsem = semanaCalendario(data);
+            List<TransCaixa> lsem = new ArrayList<>();
+            
+            if(aux.containsKey(nsem)){
+                lsem = aux.get(nsem);
+                lsem.add(trans);
+                aux.put(nsem,lsem);
+            }
+            else{
+                List<TransCaixa> ll = new ArrayList<>();
+                ll.add(trans);
+                aux.put(nsem,ll);
+            }
          }
          
+         List<List<TransCaixa>> lista = new ArrayList<>(aux.values()); 
+         
          return lista;
-    
      }
+         
      
      private double faturadoSemana(List<TransCaixa> ltc , int semana){
          List<List<TransCaixa>> listasem = new ArrayList<>();
          listasem = listaSemanaTrans(ltc);
+         
          List<TransCaixa> ll = new ArrayList<>();
          ll = listasem.get(semana);
          double valor = 0.0;
