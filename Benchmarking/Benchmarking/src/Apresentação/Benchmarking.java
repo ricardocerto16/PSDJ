@@ -14,6 +14,7 @@ import Testes.Teste3;
 import Testes.Teste4;
 import Testes.Teste5;
 import Testes.Teste6;
+import Testes.Teste7;
 import Testes.Teste8;
 import Testes.Teste9;
 import java.io.IOException;
@@ -181,7 +182,8 @@ public class Benchmarking {
                     break;
                 
                 case 7:
-                    
+                    ITestes teste7 = new Teste7(ltc);
+                    teste7.execute();
                     break;
 
                 case 8:
