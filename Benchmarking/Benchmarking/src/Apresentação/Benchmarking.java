@@ -8,6 +8,7 @@ import Modulos.Utilidades;
 import Testes.Teste1;
 import Testes.Teste10;
 import Testes.Teste11;
+import Testes.Teste12;
 import Testes.Teste2;
 import Testes.Teste3;
 import Testes.Teste4;
@@ -83,7 +84,7 @@ public class Benchmarking {
             "                                       * *                            9 - TESTE 9                                                * *",
             "                                       * *                            10 - TESTE 10                                              * *",
             "                                       * *                            11 - TESTE 11                                              * *",
-            "                                       * *                            11 - TESTE 12                                              * *",
+            "                                       * *                            12 - TESTE 12                                              * *",
             "                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *"
         };
         
@@ -203,7 +204,8 @@ public class Benchmarking {
                     break;
 
                 case 12:
-                    
+                    ITestes teste12 = new Teste12(ltc);
+                    teste12.execute();
                     break;
              }
         }while(op != 0);        
