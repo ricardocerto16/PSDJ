@@ -8,15 +8,11 @@ package Testes;
 import Interfaces.ITestes;
 import Modulos.TransCaixa;
 import Modulos.Utilidades;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.Month;
 import java.time.temporal.IsoFields;
-import java.util.AbstractMap;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
 import java.util.function.Supplier;
@@ -34,6 +30,7 @@ public class Teste9 implements ITestes {
         this.ltc = ltc;
     }
     
+    @Override
     public void execute(){
         int i;
         final int sem;
@@ -50,6 +47,7 @@ public class Teste9 implements ITestes {
         
         sem = i;
         List<List<TransCaixa>> lista = listaSemanaTrans(ltc);
+        List<List<TransCaixa>> lista2 = lista;
         /**
          * JAVA 8
          */
@@ -61,7 +59,7 @@ public class Teste9 implements ITestes {
         /**
          * JAVA 7
          */
-        Supplier<Double> j7sup = () -> faturadoSemana(ltc,sem,listasem);
+        Supplier<Double> j7sup = () -> faturadoSemana(lista2,sem);
         SimpleEntry<Double,Double> resultj7 = Utilidades.testeBoxGenW(j7sup);
         System.out.println("Tempo com Java 7 : " + resultj7.getKey() +"\n"+ 
                            "Total Faturado Semana " + sem + ": " + resultj7.getValue());
@@ -101,11 +99,10 @@ public class Teste9 implements ITestes {
      }
          
      
-     private double faturadoSemana(List<TransCaixa> ltc , int semana,List<List<TransCaixa>> listasem){
-         listasem = listaSemanaTrans(ltc);
+     private double faturadoSemana(List<List<TransCaixa>> listasem,int sem){
          
          List<TransCaixa> ll = new ArrayList<>();
-         ll = listasem.get(semana);
+         ll = listasem.get(sem);
          double valor = 0.0;
          
          for(TransCaixa tt : ll) {

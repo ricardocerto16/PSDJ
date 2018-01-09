@@ -10,7 +10,6 @@ import Modulos.TransCaixa;
 import Modulos.Utilidades;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
@@ -47,7 +46,6 @@ public class Teste3 implements ITestes {
             
         }while(true);
         
-        System.out.println("Sai");
         
         List<Integer> listaRand = randomList(i);
         int[] arrayRand = listToArray(listaRand);
