@@ -40,13 +40,16 @@ public class Teste12 implements ITestes {
         
         Map<String,Map<Month,List<TransCaixa>>> transMap = getMap(ltc);
         
-        Supplier<Double> supplierMap = ()-> transMap.values().stream()
-                                                             .mapToDouble(x->x.values().stream()
-                                                                                       .mapToDouble(h->h.stream()
-                                                                                                        .map(t->t.getValor()).reduce(0.0, Double::sum)).sum()).sum();      
-        SimpleEntry<Double,Double> resultMap = Utilidades.testeBoxGenW(supplierMap);
-        System.out.println("Time: "+ resultMap.getKey() +"\n "+
-                           "Resultado: " +resultMap.getValue());
+        Supplier<Map<String,Double>> supplierMap = ()-> transMap.entrySet().stream()
+                                                                .collect(Collectors.toMap(t->t.getKey(), 
+                                                            t->t.getValue().values().stream().mapToDouble(l->l.stream().collect(Collectors.summingDouble(s->s.getValor()))).sum()));
+                                                                   
+        SimpleEntry<Double,Map<String,Double>> resultMap = Utilidades.testeBoxGenW(supplierMap);
+        System.out.println("Tempo com Map: "+ resultMap.getKey() +"\n ");
+        
+        for(Map.Entry<String,Double> entry: resultMap.getValue().entrySet()){
+            System.out.println(entry.getKey() + "-->" + entry.getValue());
+        }
         
         
         /**
@@ -55,15 +58,16 @@ public class Teste12 implements ITestes {
         
         Map<String,Map<Month,List<TransCaixa>>> transConcurrentMap = getConcurrentMap(ltc);
         
-        Supplier<Double> supplierConcurrentMap = () -> transConcurrentMap.values().stream()
-                                                                                  .mapToDouble(x->x.values().stream()
-                                                                                                            .mapToDouble(h->h.stream()
-                                                                                                                             .map(t->t.getValor()).reduce(0.0, Double::sum)).sum()).sum();
-        SimpleEntry<Double,Double> resultConcurrentMap = Utilidades.testeBoxGenW(supplierConcurrentMap);
-        System.out.println("Time: "+resultConcurrentMap.getKey()+"\n "+
-                           "Resultado: " + resultConcurrentMap.getValue());
+        Supplier<Map<String,Double>> supplierConcurrentMap = () -> transConcurrentMap.entrySet().stream()
+                                                                                     .collect(Collectors.toMap(t->t.getKey(),t->t.getValue().values().stream()
+                                                                                                                                            .mapToDouble(l->l.stream()
+                                                                                                                                            .collect(Collectors.summingDouble(s->s.getValor()))).sum()));
+        SimpleEntry<Double,Map<String,Double>> resultConcurrentMap = Utilidades.testeBoxGenW(supplierConcurrentMap);
+        System.out.println("Time: "+resultConcurrentMap.getKey()+"\n ");
         
-        
+        for(Map.Entry<String,Double> entry: resultConcurrentMap.getValue().entrySet()){
+            System.out.println(entry.getKey() + "-->" + entry.getValue());
+        }
         
         
         
