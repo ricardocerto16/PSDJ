@@ -8,14 +8,11 @@ package Testes;
 import Interfaces.ITestes;
 import Modulos.TransCaixa;
 import Modulos.Utilidades;
-import java.util.AbstractMap;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Spliterator;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
-import java.util.stream.DoubleStream;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
@@ -77,7 +74,7 @@ public class Teste7 implements ITestes{
         //STREAM PARALELA
         Supplier<Double> supplier5 = () -> spliteratorParalelo();
         SimpleEntry<Double,Double> result5 = Utilidades.testeBoxGenW(supplier5);
-        System.out.println("Tempo Data Set Partido Stream Sequencial: " + result5.getKey() + "\n" +
+        System.out.println("Tempo Data Set Partido Stream Paralelo: " + result5.getKey() + "\n" +
                            "Resultado da Soma: " + result5.getValue());
        
         

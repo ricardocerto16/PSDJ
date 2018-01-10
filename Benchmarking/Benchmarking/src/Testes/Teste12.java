@@ -45,7 +45,7 @@ public class Teste12 implements ITestes {
                                                             t->t.getValue().values().stream().mapToDouble(l->l.stream().collect(Collectors.summingDouble(s->s.getValor()))).sum()));
                                                                    
         SimpleEntry<Double,Map<String,Double>> resultMap = Utilidades.testeBoxGenW(supplierMap);
-        System.out.println("Tempo com Map: "+ resultMap.getKey() +"\n ");
+        System.out.println("Tempo com Map: "+ resultMap.getKey() +"\n");
         
         for(Map.Entry<String,Double> entry: resultMap.getValue().entrySet()){
             System.out.println(entry.getKey() + "-->" + entry.getValue());

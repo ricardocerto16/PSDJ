@@ -6,12 +6,9 @@
 package Testes;
 
 import Interfaces.ITestes;
-import Modulos.TransCaixa;
 import Modulos.Utilidades;
 import java.util.AbstractMap.SimpleEntry;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 import java.util.function.BiFunction;
 import java.util.function.Supplier;
