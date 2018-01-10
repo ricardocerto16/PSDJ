@@ -13,28 +13,36 @@ import static java.time.format.DateTimeFormatter.ofPattern;
 
 
 public class CalculadoraApp {
+    
+    Resposta principal;
+    RelogioUser rel;
+    Fusos fusos;
+    Cronometro cron;
+    
+    
 
-    private static Resposta principal;
-    private static RelogioUser rel;
-    private static Fusos fusos;
-    private static Cronometro cron;
-    private static Menu startMenu, cronometroMenu, duracaoMenu, calculadoraMenu, uteisMenu, adicionaRemoveMenu, diaXMenu, diamesMenu, diaanoMenu, fusoshMenu;
+    private static Menu startMenu, 
+            cronometroMenu, 
+            duracaoMenu, 
+            calculadoraMenu, 
+            uteisMenu, adicionaRemoveMenu, 
+            diaXMenu, diamesMenu, 
+            diaanoMenu, fusoshMenu;
 
 
-    private CalculadoraApp() {}
-
-    public static void main (String [] args) {
-        principal = new Resposta();
-        rel = new RelogioUser();
-        fusos = new Fusos();
-        cron = new Cronometro();
-        carregarMenus();
-        printMenuPrincipal();
+    public CalculadoraApp(Resposta principal, RelogioUser rel, Fusos fusos,Cronometro cron) {
+        this.principal = principal;
+        this.rel = rel;
+        this.fusos = fusos;
+        this.cron = cron;
+        carregarMenus(principal,rel);
+        printMenuPrincipal(principal,rel,fusos,cron);
     }
+    
 
 
 
-    private static void carregarMenus() {
+    private static void carregarMenus(Resposta principal, RelogioUser rel) {
         
         String zona = rel.getZoneAndOffset();
         
@@ -205,7 +213,7 @@ public class CalculadoraApp {
 
 
 
-    private static void printMenuPrincipal() {
+    private static void printMenuPrincipal(Resposta principal, RelogioUser rel, Fusos fusos,Cronometro cron) {
         int op;
 
         do{
@@ -213,39 +221,39 @@ public class CalculadoraApp {
             switch (op){
                 case 1:
                     clearScreen();
-                    printCalculadoraMenu();
+                    printCalculadoraMenu(principal);
                     break;
 
                 case 2:
                     clearScreen();
-                    printDiaMesMenu();
+                    printDiaMesMenu(principal);
                     break;
 
                 case 3:
                     clearScreen();
-                    printDiaAnoMenu();
+                    printDiaAnoMenu(principal);
                     break;
 
                 case 4:
                     clearScreen();
-                    printAdicionaRemoveMenu();
+                    printAdicionaRemoveMenu(principal);
                     break;
 
                 case 5:
                     clearScreen();
-                    printFusosHorariosMenu();
+                    printFusosHorariosMenu(fusos);
                     break;
 
                 case 6:
                     clearScreen();
-                    printCronometroMenu();
+                    printCronometroMenu(cron);
                     break;
 
             }
         } while (op != 0);
     }
 
-    private static void printCronometroMenu() {
+    private static void printCronometroMenu(Cronometro cron) {
         int op;
         String time = "Inicie o cronometro";
         String resp = " * *               O tempo do cronómetro é :  ";
@@ -272,73 +280,73 @@ public class CalculadoraApp {
 
     }
 
-    private static void printCalculadoraMenu() {
+    private static void printCalculadoraMenu(Resposta principal) {
         int op;
         do {
             op = calculadoraMenu.showMenu();
             switch (op) {
                 case 1:
                     clearScreen();
-                    printDuracaoMenu();
+                    printDuracaoMenu(principal);
                     break;
 
                 case 2:
                     clearScreen();
-                    calculadoraDiasSemana();
+                    calculadoraDiasSemana(principal);
                     break;
 
                 case 3:
                     clearScreen();
-                    calculadoraSemanaCalendario();
+                    calculadoraSemanaCalendario(principal);
                     break;
 
                 case 4:
                     clearScreen();
-                    printDiasUteisMenu();
+                    printDiasUteisMenu(principal);
                     break;
 
                 case 5:
                     clearScreen();
-                    printdiaXMenu();
+                    printdiaXMenu(principal);
                     break;
                     
                 case 6:
                     clearScreen();
-                    calculadoraDiaEspecifico();
+                    calculadoraDiaEspecifico(principal);
                     break;
                 
                 case 7:
                     clearScreen();
-                    printFimDeSemana();
+                    printFimDeSemana(principal);
                     break;
                     
                 case 8:
                     clearScreen();
-                    printDiasNUteis();
+                    printDiasNUteis(principal);
                     break;
                 
                 case 9:
                     clearScreen();
-                    printFeriados();
+                    printFeriados(principal);
                     break;
             }
         } while (op != 0);
     }
 
 
-    private static void printDuracaoMenu() {
+    private static void printDuracaoMenu(Resposta principal) {
         int op;
         do {
             op = duracaoMenu.showMenu();
             switch (op) {
                 case 1:
                     clearScreen();
-                    calculadoraDuracao();
+                    calculadoraDuracao(principal);
                     break;
 
                 case 2:
                     clearScreen();
-                    calculadoraTempoFalta();
+                    calculadoraTempoFalta(principal);
                     break;
             }
         } while (op != 0);
@@ -347,43 +355,43 @@ public class CalculadoraApp {
 
 
 
-    private static void printDiasUteisMenu() {
+    private static void printDiasUteisMenu(Resposta principal) {
         int op;
         do {
             op = uteisMenu.showMenu();
             switch (op) {
                 case 1:
                     clearScreen();
-                    calculadoraDiasUteisEntreDatas();
+                    calculadoraDiasUteisEntreDatas(principal);
                     break;
 
                 case 2:
                     clearScreen();
-                    calculadoraDiasUteisApos();
+                    calculadoraDiasUteisApos(principal);
                     break;
 
                 case 3:
                     clearScreen();
-                    calculadoraDiasUteisAntes();
+                    calculadoraDiasUteisAntes(principal);
                     break;                
             }
         } while (op != 0);
     }
 
 
-    private static void printAdicionaRemoveMenu() {
+    private static void printAdicionaRemoveMenu(Resposta principal) {
         int op;
         do {
             op = adicionaRemoveMenu.showMenu();
             switch (op) {
                 case 1:
                     clearScreen();
-                    calculadoraAdiciona();
+                    calculadoraAdiciona(principal);
                     break;
 
                 case 2:
                     clearScreen();
-                    calculadoraRemove();
+                    calculadoraRemove(principal);
                     break;
             }
         } while (op != 0);
@@ -391,24 +399,24 @@ public class CalculadoraApp {
 
 
 
-    private static void printdiaXMenu() {
+    private static void printdiaXMenu(Resposta principal) {
         int op;
         do {
             op = diaXMenu.showMenu();
             switch (op) {
                 case 1:
                     clearScreen();
-                    calculadoraDataXDia();
+                    calculadoraDataXDia(principal);
                     break;
 
                 case 2:
                     clearScreen();
-                    calculadoraSemanaXDia();
+                    calculadoraSemanaXDia(principal);
                     break;
 
                 case 3:
                     clearScreen();
-                    calculadoraXDiaData();
+                    calculadoraXDiaData(principal);
                     break;
             }
         } while (op != 0);
@@ -416,67 +424,67 @@ public class CalculadoraApp {
 
 
 
-    private static void printDiaMesMenu() {
+    private static void printDiaMesMenu(Resposta principal) {
         int op;
         do {
             op = diamesMenu.showMenu();
             switch (op) {
                 case 1:
                     clearScreen();
-                    calculadoraPrimeiroDiaMes();
+                    calculadoraPrimeiroDiaMes(principal);
                     break;
 
                 case 2:
                     clearScreen();
-                    calculadoraUltimoDiaMes();
+                    calculadoraUltimoDiaMes(principal);
                     break;
 
                 case 3:
                     clearScreen();
-                    calculadoraQuantosDiaMes();
+                    calculadoraQuantosDiaMes(principal);
                     break;
             }
         } while (op != 0);
     }
 
 
-    private static void printDiaAnoMenu() {
+    private static void printDiaAnoMenu(Resposta principal) {
         int op;
         do {
             op = diaanoMenu.showMenu();
             switch (op) {
                 case 1:
                     clearScreen();
-                    calculadoraPrimeiroDiaAno();
+                    calculadoraPrimeiroDiaAno(principal);
                     break;
 
                 case 2:
                     clearScreen();
-                    calculadoraUltimoDiaAno();
+                    calculadoraUltimoDiaAno(principal);
                     break;
 
                 case 3:
                     clearScreen();
-                    calculadoraComumBissexto();
+                    calculadoraComumBissexto(principal);
                     break;
             }
         } while (op != 0);
     }
 
 
-    private static void printFusosHorariosMenu() {
+    private static void printFusosHorariosMenu(Fusos fusos) {
         int op;
         do {
             op = fusoshMenu.showMenu();
             switch (op) {
                 case 1:
                     clearScreen();
-                    fusoDiferenca2Tempos();
+                    fusoDiferenca2Tempos(fusos);
                     break;
 
                 case 2:
                     clearScreen();
-                    fusoTempoAtual();
+                    fusoTempoAtual(fusos);
                     break;
             }
         } while (op != 0);
@@ -488,7 +496,7 @@ public class CalculadoraApp {
 
 
 
-    private static void calculadoraDuracao() {
+    private static void calculadoraDuracao(Resposta principal) {
 
         String tipo,resposta;
         Integer d1dia,d1mes,d1ano,d2dia,d2mes,d2ano;
@@ -535,7 +543,7 @@ public class CalculadoraApp {
 
 
 
-    private static void calculadoraTempoFalta() {
+    private static void calculadoraTempoFalta(Resposta principal) {
         String tipo,resposta;
         Integer d1dia, d1mes, d1ano;
         clearScreen();
@@ -569,7 +577,7 @@ public class CalculadoraApp {
 
     }
 
-    private static void calculadoraDiasSemana()  {
+    private static void calculadoraDiasSemana(Resposta principal)  {
         //Em que dia da semana calhou uma dada data
 
 
@@ -600,7 +608,7 @@ public class CalculadoraApp {
         }
     }
 
-    private static void calculadoraComumBissexto(){
+    private static void calculadoraComumBissexto(Resposta principal){
         //dizer se o ano introduzido era/será comum ou bissexto (meter também 365 ou 366)
 
         String resposta;
@@ -625,7 +633,7 @@ public class CalculadoraApp {
         }
     }
 
-    private static void calculadoraSemanaCalendario() {
+    private static void calculadoraSemanaCalendario(Resposta principal) {
         // A que semana pertence uma determinada data
 
         String resposta;
@@ -654,7 +662,7 @@ public class CalculadoraApp {
         }
     }
 
-    private static void calculadoraDiasUteisEntreDatas() {
+    private static void calculadoraDiasUteisEntreDatas(Resposta principal) {
         //conta os dias úteis entre duas datas,
         String resposta;
         Integer d1dia, d1mes, d1ano, d2dia, d2mes, d2ano;
@@ -691,7 +699,7 @@ public class CalculadoraApp {
             System.out.println("Pressione Enter Para Continuar");
         }
     }
-    private static void printDiasNUteis() {
+    private static void printDiasNUteis(Resposta principal) {
         //conta os dias úteis entre duas datas,
         String resposta;
         Integer d1dia, d1mes, d1ano, d2dia, d2mes, d2ano;
@@ -732,7 +740,7 @@ public class CalculadoraApp {
     
     
     //REVIEW
-    private static void printFimDeSemana() {
+    private static void printFimDeSemana(Resposta principal) {
         
         String resposta;
         Integer d1dia, d1mes, d1ano, d2dia, d2mes, d2ano;
@@ -770,7 +778,7 @@ public class CalculadoraApp {
         }
     }
     
-    private static void printFeriados() {
+    private static void printFeriados(Resposta principal) {
         
         String resposta;
         Integer d1dia, d1mes, d1ano, d2dia, d2mes, d2ano;
@@ -810,7 +818,7 @@ public class CalculadoraApp {
        
     
     //REVIEW
-    private static void calculadoraDiaEspecifico(){
+    private static void calculadoraDiaEspecifico(Resposta principal){
         
         String resposta,diaSemana;
         Integer d1dia, d1mes, d1ano, d2dia, d2mes, d2ano;
@@ -850,7 +858,7 @@ public class CalculadoraApp {
         }
     }
 
-    private static void calculadoraDiasUteisApos() {
+    private static void calculadoraDiasUteisApos(Resposta principal) {
         //dada uma data de inicio e um número de dias uteis, diz que data será
         String resposta;
         Integer d1dia,d1mes,d1ano;
@@ -883,7 +891,7 @@ public class CalculadoraApp {
     }
 
 
-    private static void calculadoraDiasUteisAntes() {
+    private static void calculadoraDiasUteisAntes(Resposta principal) {
         //dada uma data de inicio e um número de dias uteis, diz que data foi
         String resposta;
         Integer d1dia,d1mes,d1ano;
@@ -917,7 +925,7 @@ public class CalculadoraApp {
 
 
 
-    private static void calculadoraAdiciona() {
+    private static void calculadoraAdiciona(Resposta principal) {
         //Adicionar a uma data, se não quiser adicionar um dos valores, meter 0;
 
 
@@ -959,7 +967,7 @@ public class CalculadoraApp {
 
 
 
-    private static void calculadoraRemove() {
+    private static void calculadoraRemove(Resposta principal) {
 
 
 
@@ -999,7 +1007,7 @@ public class CalculadoraApp {
     }
 
 
-    private static void calculadoraDataXDia() {
+    private static void calculadoraDataXDia(Resposta principal) {
 
 
         String resposta;
@@ -1031,7 +1039,7 @@ public class CalculadoraApp {
     }
 
 
-    private static void calculadoraXDiaData(){
+    private static void calculadoraXDiaData(Resposta principal){
 
 
         String resposta;
@@ -1060,7 +1068,7 @@ public class CalculadoraApp {
     }
 
 
-    private static void calculadoraSemanaXDia() {
+    private static void calculadoraSemanaXDia(Resposta principal) {
 
         String resposta;
         Integer dia,d1ano;
@@ -1084,7 +1092,7 @@ public class CalculadoraApp {
     }
     
 
-    private static void calculadoraPrimeiroDiaMes() {
+    private static void calculadoraPrimeiroDiaMes(Resposta principal) {
 
 
         String resposta;
@@ -1114,7 +1122,7 @@ public class CalculadoraApp {
     }
 
 
-    private static void calculadoraUltimoDiaMes() {
+    private static void calculadoraUltimoDiaMes(Resposta principal) {
 
 
         String resposta;
@@ -1145,7 +1153,7 @@ public class CalculadoraApp {
     }
 
 
-    private static void calculadoraQuantosDiaMes() {
+    private static void calculadoraQuantosDiaMes(Resposta principal) {
 
 
 
@@ -1173,7 +1181,7 @@ public class CalculadoraApp {
         }
     }
 
-    private static void calculadoraPrimeiroDiaAno() {
+    private static void calculadoraPrimeiroDiaAno(Resposta principal) {
 
 
         String resposta;
@@ -1202,7 +1210,7 @@ public class CalculadoraApp {
     }
 
 
-    private static void calculadoraUltimoDiaAno() {
+    private static void calculadoraUltimoDiaAno(Resposta principal) {
 
 
         String resposta;
@@ -1229,7 +1237,7 @@ public class CalculadoraApp {
     }
 
 
-    private static void fusoTempoAtual() {
+    private static void fusoTempoAtual(Fusos fusos) {
         // falta verificar se a  opção é válida
         String local;
         clearScreen();
@@ -1259,7 +1267,7 @@ public class CalculadoraApp {
     }
 
 
-    private static void fusoDiferenca2Tempos() {
+    private static void fusoDiferenca2Tempos(Fusos fusos) {
 
         int d1dia, d1mes, d1ano, d2dia, d2mes, d2ano;
         int hora1 , segundos1 , minuto1 , hora2 , segundos2 , minuto2;
