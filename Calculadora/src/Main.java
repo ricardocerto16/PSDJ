@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package presentation;
+
 
 import business.Cronometro;
 import business.Fusos;
 import business.RelogioUser;
 import business.Resposta;
+import presentation.CalculadoraApp;
+
 
 /**
  *
