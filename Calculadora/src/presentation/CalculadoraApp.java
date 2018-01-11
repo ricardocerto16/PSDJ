@@ -21,10 +21,8 @@ public class CalculadoraApp {
     
     
 
-    private static Menu startMenu, 
-            cronometroMenu, 
-            duracaoMenu, 
-            calculadoraMenu, 
+    private Menu startMenu, cronometroMenu, 
+            duracaoMenu, calculadoraMenu, 
             uteisMenu, adicionaRemoveMenu, 
             diaXMenu, diamesMenu, 
             diaanoMenu, fusoshMenu;
