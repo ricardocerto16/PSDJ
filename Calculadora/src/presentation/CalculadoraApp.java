@@ -7,20 +7,14 @@ import business.RelogioUser;
 import business.Fusos;
 
 import java.time.*;
-import static java.time.OffsetTime.now;
-import java.time.format.DateTimeFormatter;
-import static java.time.format.DateTimeFormatter.ofPattern;
 
 
 public class CalculadoraApp {
     
-    Resposta principal;
-    RelogioUser rel;
-    Fusos fusos;
-    Cronometro cron;
-    
-    
-
+    private Resposta principal;
+    private RelogioUser rel;
+    private Fusos fusos;
+    private Cronometro cron;
     private Menu startMenu, cronometroMenu, 
             duracaoMenu, calculadoraMenu, 
             uteisMenu, adicionaRemoveMenu, 
