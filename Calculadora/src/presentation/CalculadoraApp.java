@@ -198,17 +198,18 @@ public class CalculadoraApp {
                 "                                       * *                            0 - VOLTAR À PÁGINA INICIAL                                * *",
                 "                                       * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *",
         };
-
-        startMenu = new Menu(start);
-        calculadoraMenu = new Menu(calculadora);
-        duracaoMenu = new Menu(duracao);
-        uteisMenu = new Menu(uteis);
-        adicionaRemoveMenu = new Menu(adicionaRemove);
-        diaXMenu = new Menu(xdia);
-        diamesMenu = new Menu(diames);
-        diaanoMenu = new Menu(diaano);
-        fusoshMenu = new Menu(fusosh);
-        cronometroMenu = new Menu(cronometro);
+        
+         startMenu = new Menu(start);
+         calculadoraMenu = new Menu(calculadora);
+         duracaoMenu = new Menu(duracao);
+         uteisMenu = new Menu(uteis);
+         adicionaRemoveMenu = new Menu(adicionaRemove);
+         diaXMenu = new Menu(xdia);
+         diamesMenu = new Menu(diames);
+         diaanoMenu = new Menu(diaano);
+         fusoshMenu = new Menu(fusosh);
+         cronometroMenu = new Menu(cronometro);
+        
     }
 
 
